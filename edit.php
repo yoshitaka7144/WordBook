@@ -32,6 +32,26 @@ if (!empty($registType)) {
   }
 }
 
+if ($pageType !== PAGE_TYPE_CONFIRM) {
+  try {
+    $pdo = new PDO(
+      "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
+      DB_USER,
+      DB_PASS,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      ]
+    );
+    $stmt = $pdo->prepare("select id, type, question, answer from words order by id limit 9,10");
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+    $count = $stmt->rowCount();
+  } catch (PDOException $e) {
+    //throw $th;
+  }
+}
+
 ?>
 <?php include(dirname(__FILE__) . '/header.php'); ?>
 <main>
@@ -96,33 +116,36 @@ if (!empty($registType)) {
         </div>
         <div class="edit-table">
           <p class="title">登録データ一覧</p>
-          <p class="message">aaaaaaaaa</p>
-          <table id="data-table">
-            <tr>
-              <th>見出し</th>
-              <td>データ</td>
-              <td>データ</td>
-              <td>データ</td>
-            </tr>
-            <tr>
-              <th>見出し</th>
-              <td>データ</td>
-              <td>データ</td>
-              <td>データ</td>
-            </tr>
-            <tr>
-              <th>見出し</th>
-              <td>データ</td>
-              <td>データ</td>
-              <td>データ</td>
-            </tr>
-            <tr>
-              <th>見出し</th>
-              <td>データ</td>
-              <td>データ</td>
-              <td>データ</td>
-            </tr>
-          </table>
+          <p class="message">データを選択すると問題編集欄に反映されます</p>
+          <div class="radio">
+            <input id="radio-all" name="radio" type="radio" value="All" checked>
+            <label for="radio-all" class="radio-label">全データ</label>
+            <input id="radio-japanese" name="radio" type="radio" value="和訳">
+            <label for="radio-japanese" class="radio-label">和訳</label>
+            <input id="radio-English" name="radio" type="radio" value="英訳">
+            <label for="radio-English" class="radio-label">英訳</label>
+          </div>
+          <div class="table-wrapper">
+            <table id="data-table">
+              <tr>
+                <th class="fixed">ID</th>
+                <th class="fixed">種類</th>
+                <th class="fixed">問題</th>
+                <th class="fixed">答え</th>
+              </tr>
+              <?php foreach ($rows as $row) : ?>
+                <?php echo "<tr class='data-row'>" ?>
+                <?php echo "<td>" . $row["id"] . "</td>" ?>
+                <?php echo "<td>" . $row["type"] . "</td>" ?>
+                <?php echo "<td>" . $row["question"] . "</td>" ?>
+                <?php echo "<td>" . $row["answer"] . "</td>" ?>
+                <?php echo "</tr>" ?>
+              <?php endforeach ?>
+            </table>
+            <div class="pagination">
+              
+            </div>
+          </div>
         </div>
       <?php endif ?>
     </div>
