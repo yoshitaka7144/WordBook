@@ -1,6 +1,10 @@
 <?php
-require_once("config.php");
 header("Content-Type: application/json; charset=UTF-8");
+require_once("config.php");
+function h($str)
+{
+  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
 
 $type = filter_input(INPUT_POST,"type");
 $page = filter_input(INPUT_POST,"page");
@@ -28,18 +32,25 @@ try {
   $rows = $stmt->fetchAll();
 
   if($type === SELECT_TYPE_ALL){
-    $stmt = $pdo->prepare("select id, type, question, answer from words");
+    $stmt = $pdo->prepare("select count(*) from words");
   }else{
-    $stmt = $pdo->prepare("select id, type, question, answer from words where type = :type");
+    $stmt = $pdo->prepare("select count(*) from words where type = :type");
     $stmt->bindValue(":type", $type);
   }
   $stmt->execute();
-  $rowCount = $stmt->rowCount();
+  $rowCount = $stmt->fetchColumn();
   $maxPage = ceil($rowCount / MAX_TABLE_ROW_COUNT);
 } catch (PDOException $e) {
-  //throw $th;
+  
 }
 
-$result = [$rows, $page, $maxPage];
+foreach($rows as $key => $value){
+  $rows[$key]["id"] = h($rows[$key]["id"]);
+  $rows[$key]["type"] = h($rows[$key]["type"]);
+  $rows[$key]["question"] = h($rows[$key]["question"]);
+  $rows[$key]["answer"] = h($rows[$key]["answer"]);
+}
+
+$result = ["rows" => $rows, "currentPage" => $page, "maxPage" => $maxPage];
 
 echo json_encode($result);

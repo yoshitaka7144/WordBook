@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/headerMenu.js"></script>
+    <script src="js/dataTable.js"></script>
 </head>
 
 <body>

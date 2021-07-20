@@ -164,6 +164,9 @@ header {
     left: 2px;
     box-shadow: none;
   }
+  &:disabled{
+    opacity: 0.3;
+  }
 }
 
 .btn-green{

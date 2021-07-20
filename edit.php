@@ -32,6 +32,7 @@ if (!empty($registType)) {
   }
 }
 
+$dbErrorMessage = "";
 if ($pageType !== PAGE_TYPE_CONFIRM) {
   try {
     $pdo = new PDO(
@@ -43,17 +44,17 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
       ]
     );
-    $stmt = $pdo->prepare("select id, type, question, answer from words order by id limit 0, :limit");
-    $stmt->bindValue(":limit", (int)MAX_TABLE_ROW_COUNT, pdo::PARAM_INT);
+    $stmt = $pdo->prepare("select id, type, question, answer from words order by id limit 0, :limitCount");
+    $stmt->bindValue(":limitCount", (int)MAX_TABLE_ROW_COUNT, pdo::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll();
 
-    $stmt = $pdo->prepare("select id, type, question, answer from words");
+    $stmt = $pdo->prepare("select count(*) from words");
     $stmt->execute();
-    $rowCount = $stmt->rowCount();
+    $rowCount = $stmt->fetchColumn();
     $maxPage = ceil($rowCount / MAX_TABLE_ROW_COUNT);
   } catch (PDOException $e) {
-    //throw $th;
+    $dbErrorMessage = $e->getMessage();
   }
 }
 
@@ -130,27 +131,36 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
             <input id="radio-English" name="radio" type="radio" value="英訳">
             <label for="radio-English" class="radio-label">英訳</label>
           </div>
-          <table id="data-table">
-            <tr>
-              <th class="table-header">ID</th>
-              <th class="table-header">種類</th>
-              <th class="table-header">問題</th>
-              <th class="table-header">答え</th>
-            </tr>
-            <?php foreach ($rows as $row) : ?>
-              <?php echo "<tr class='data-row'>" ?>
-              <?php echo "<td>" . $row["id"] . "</td>" ?>
-              <?php echo "<td>" . $row["type"] . "</td>" ?>
-              <?php echo "<td>" . $row["question"] . "</td>" ?>
-              <?php echo "<td>" . $row["answer"] . "</td>" ?>
-              <?php echo "</tr>" ?>
-            <?php endforeach ?>
-          </table>
-          <div class="pagination">
-            <p class="message"><span id="current-page">1</span> / <span id="max-page"><?php echo $maxPage ?></span></p>
-            <input class="btn btn-blue" id="btn-prev" type="button" value="prev">
-            <input class="btn btn-blue" id="btn-next" type="button" value="next">
-          </div>
+          <?php if (!empty($dbErrorMessage)) : ?>
+            <p class="message">データベース接続にてエラーが発生しています。</p>
+            <?php echo $dbErrorMessage ?>
+          <?php else : ?>
+            <table id="data-table">
+              <thead>
+                <tr>
+                  <th class="table-header">ID</th>
+                  <th class="table-header">種類</th>
+                  <th class="table-header">問題</th>
+                  <th class="table-header">答え</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($rows as $row) : ?>
+                  <?php echo "<tr class='data-row'>" ?>
+                  <?php echo "<td>" . h($row["id"]) . "</td>" ?>
+                  <?php echo "<td>" . h($row["type"]) . "</td>" ?>
+                  <?php echo "<td>" . h($row["question"]) . "</td>" ?>
+                  <?php echo "<td>" . h($row["answer"]) . "</td>" ?>
+                  <?php echo "</tr>" ?>
+                <?php endforeach ?>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <p class="message"><span id="current-page">1</span> / <span id="max-page"><?php echo $maxPage ?></span></p>
+              <input class="btn btn-blue" id="btn-prev" type="button" value="prev" disabled>
+              <input class="btn btn-blue" id="btn-next" type="button" value="next" <?php echo (int)$maxPage === 1 ? "disabled" : "" ?>>
+            </div>
+          <?php endif ?>
         </div>
       <?php endif ?>
     </div>
