@@ -132,8 +132,8 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
             <label for="radio-English" class="radio-label">英訳</label>
           </div>
           <?php if (!empty($dbErrorMessage)) : ?>
-            <p class="message">データベース接続にてエラーが発生しています。</p>
-            <?php echo $dbErrorMessage ?>
+            <p class="error-message"><?= DB_ERROR_MESSAGE ?></p>
+            <p class="message"><?= $dbErrorMessage ?></p>
           <?php else : ?>
             <table id="data-table">
               <thead>

@@ -10,8 +10,8 @@
             <div class="menu">
                 <p class="title">クイズメニュー</p>
                 <p class="message">問題の種類を選択してください</p>
-                <a href="quiz.php?type=和訳" class="btn btn-blue">和訳クイズ</a>
-                <a href="quiz.php?type=英訳" class="btn btn-blue">英訳クイズ</a>
+                <a href="quizSetting.php?type=和訳" class="btn btn-blue">和訳クイズ</a>
+                <a href="quizSetting.php?type=英訳" class="btn btn-blue">英訳クイズ</a>
             </div>
         </div>
     </div>

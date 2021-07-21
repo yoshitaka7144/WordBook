@@ -11,7 +11,7 @@ a {
 header {
   height: 60px;
   width: 100%;
-  background-color: rgba(34, 56, 78, 0.9);
+  background-color: #22384e;
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -281,6 +281,15 @@ header {
 
 .radio .radio-label {
   margin-right: 15px;
+}
+
+.quiz-setting {
+  width: 70%;
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 6px;
+  text-align: center;
 }
 
 footer {
