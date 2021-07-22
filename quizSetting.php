@@ -1,4 +1,5 @@
 <?php
+session_unset();
 require_once("config.php");
 
 function h($str)
@@ -31,7 +32,7 @@ try {
 <main>
   <div class="container">
     <div class="main-contents">
-      <div class="quiz-setting">
+      <div class="quiz">
         <?php if (!empty($dbErrorMessage)) : ?>
           <p class="error-message"><?=DB_ERROR_MESSAGE?></p>
           <p class="message"><?=$dbErrorMessage?></p>
@@ -62,12 +63,9 @@ try {
               }
               ?>
             </select>
-            <p class="message">出題方式</p>
-            <input id="radio-all" name="radio" type="radio" value="all" checked>
-            <label for="radio-all" class="radio-label">全問</label>
-            <input id="radio-miss" name="radio" type="radio" value="miss">
-            <label for="radio-miss" class="radio-label">間違えるまで</label>
+            <div>
             <input class="btn btn-blue" type="submit" value="スタート">
+            </div>
           </form>
         <?php endif ?>
       </div>
