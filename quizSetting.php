@@ -1,5 +1,7 @@
 <?php
-session_unset();
+session_start();
+$_SESSION = array();
+session_destroy();
 require_once("config.php");
 
 function h($str)

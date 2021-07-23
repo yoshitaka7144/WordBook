@@ -1,4 +1,9 @@
-<?php include(dirname(__FILE__) . '/header.php'); ?>
+<?php
+session_start();
+$_SESSION = array();
+session_destroy();
+?>
+<?php include(dirname(__FILE__) . '/header.php');?>
 <main>
     <div class="container">
         <div class="main-contents">

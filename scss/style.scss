@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "Hiragino Kaku Gothic ProN";
 }
 
@@ -260,6 +261,28 @@ header {
   margin: 10px;
   border-radius: 6px;
   text-align: center;
+}
+
+.choices{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.choice-area{
+  width: 50%;
+  padding: 10px;
+}
+
+#text-answer{
+  display: none;
+}
+
+.correct{
+  background-color: rgb(141, 218, 174);
+}
+
+.incorrect{
+  background-color: rgb(236, 131, 131);
 }
 
 footer {

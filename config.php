@@ -4,6 +4,7 @@ define("DB_HOST", "localhost");
 define("DB_NAME", "test");
 define("DB_USER", "yoshi");
 define("DB_PASS", "test");
+define("DB_ERROR_MESSAGE","データベース接続にてエラーが発生しました。");
 
 define("PAGE_TYPE_DEFAULT", 0);
 define("PAGE_TYPE_ERROR", -1);
@@ -17,6 +18,6 @@ define("REGIST_TYPE_CREATE","登録");
 define("REGIST_TYPE_UPDATE","更新");
 define("REGIST_TYPE_DELETE","削除");
 
-define("DB_ERROR_MESSAGE","データベース接続にてエラーが発生しました。");
+define("CHOICES_COUNT",4);
 
 ?>

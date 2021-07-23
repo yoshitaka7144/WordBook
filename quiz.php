@@ -6,11 +6,17 @@ function h($str)
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-$quizData = isset($_SESSION["quizData"]) ? $_SESSION["quizData"] : "";
-$inputType = filter_input(INPUT_POST, "quiz-type");
-$inputCount = filter_input(INPUT_POST, "quiz-count");
+$incorrectQuestion = filter_input(INPUT_POST, "incorrect-question");
+$incorrectAnswer = filter_input(INPUT_POST, "incorrect-answer");
+if (!empty($incorrectQuestion) && !empty($incorrectAnswer)) {
+  $_SESSION["incorrect"][] = ["question" => $incorrectQuestion, "answer" => $incorrectAnswer];
+}
 
-if (!empty($inputType)) {
+$settingType = filter_input(INPUT_POST, "quiz-type");
+$settingCount = filter_input(INPUT_POST, "quiz-count");
+$finished = false;
+
+if (!empty($settingType)) {
   try {
     $pdo = new PDO(
       "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
@@ -22,38 +28,44 @@ if (!empty($inputType)) {
       ]
     );
     $stmt = $pdo->prepare("select id, type, question, answer from words where type = :type order by rand() limit :limit");
-    $stmt->bindValue(":type", $inputType);
-    $stmt->bindValue(":limit", (int)$inputCount, PDO::PARAM_INT);
+    $stmt->bindValue(":type", $settingType);
+    $stmt->bindValue(":limit", (int)$settingCount, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll();
 
     $_SESSION["quizData"] = $rows;
-    $_SESSION["quizCount"] = $inputCount;
+    $_SESSION["quizCount"] = (int)$settingCount;
     $_SESSION["quizCurrentIndex"] = 0;
   } catch (PDOException $e) {
     $dbErrorMessage = $e->getMessage();
   }
 } else {
-  if (empty($quizData)) {
+  if (!isset($_SESSION["quizData"])) {
     header("Location: ./quizSetting.php");
+    exit;
   } else {
     $_SESSION["quizCurrentIndex"]++;
+    if ($_SESSION["quizCount"] < ($_SESSION["quizCurrentIndex"] + 1)) {
+      $finished = true;
+    }
   }
 }
 
-$quizData = $_SESSION["quizData"];
-$question = $quizData[$_SESSION["quizCurrentIndex"]]["question"];
-$answer = $quizData[$_SESSION["quizCurrentIndex"]]["answer"];
-$count = $_SESSION["quizCurrentIndex"]+1;
-$choices = [];
-shuffle($quizData);
-foreach($quizData as $quiz){
-  if($quiz["answer"] !== $answer){
-    $choices[] = $quiz["answer"];
-    if(count($choices) === 3) {
-      $choices[] = $answer;
-      shuffle($choices);
-      break;
+if (!$finished) {
+  $quizData = $_SESSION["quizData"];
+  $question = $quizData[$_SESSION["quizCurrentIndex"]]["question"];
+  $answer = $quizData[$_SESSION["quizCurrentIndex"]]["answer"];
+  $count = $_SESSION["quizCurrentIndex"] + 1;
+  $choices = [];
+  shuffle($quizData);
+  foreach ($quizData as $quiz) {
+    if ($quiz["answer"] !== $answer) {
+      $choices[] = $quiz["answer"];
+      if (count($choices) === CHOICES_COUNT - 1) {
+        $choices[] = $answer;
+        shuffle($choices);
+        break;
+      }
     }
   }
 }
@@ -64,21 +76,46 @@ foreach($quizData as $quiz){
   <div class="container">
     <div class="main-contents">
       <div class="quiz">
-        <div class="sentence">
-          <p class="message"><?="第".$count."問目"?></p>
-          <p class="message"><?=$question?></p>
-        </div>
-        <div class="choices">
-          <?php
-          for($i=1;$i<=count($choices);$i++){
-            $choice = h($choices[$i-1]);
-            echo "<div id='choice-area-".$i."'><input type='radio' name='choice' id='choice-".$i."' value='".$choice."'><label for='choice-".$i."' class=''>".$choice."</label></div>";
-          }
-          ?>
-        </div>
-        <form action="" method="post">
-          <input class="btn btn-blue" type="submit" value="次へ">
-        </form>
+        <?php if ($finished) : ?>
+          <div class="result">
+            <p class="title">クイズ結果</p>
+            <p class="message">aaaaaaa</p>
+            <?php
+            if (isset($_SESSION["incorrect"])) {
+              foreach ($_SESSION["incorrect"] as $item) {
+                echo  "<p>問題:" . h($item["question"]) . "答え：" . h($item["answer"]) . "</p>";
+              }
+            }
+            ?>
+            <a href="quizSetting.php" class="btn btn-blue">クイズ設定画面へ</a>
+            <a href="index.php" class="btn btn-blue">トップ画面へ</a>
+          </div>
+        <?php else : ?>
+          <div class="sentence">
+            <p class="message"><?= "第" . $count . "問目" ?></p>
+            <p id="text-question"><?= h($question) ?></p>
+            <p id="text-answer"><?= h($answer) ?></p>
+          </div>
+          <div class="choices">
+            <?php
+            for ($i = 1; $i <= count($choices); $i++) {
+              $choice = $choices[$i - 1];
+              echo "<div class='choice-area' id='choice-area-" . $i . "'><input type='radio' name='choice' id='choice-" . $i . "' value='" . h($choice) . "'><label for='choice-" . $i . "' class=''>" . h($choice) . "</label></div>";
+            }
+            ?>
+          </div>
+          <p id="answer-message" class="message"></p>
+          <form action="" method="post">
+            <input type="hidden" name="incorrect-question" value="">
+            <input type="hidden" name="incorrect-answer" value="">
+            <input class="btn btn-green" type="button" id="btn-answer" value="回答する">
+            <?php if ($count === $_SESSION["quizCount"]) : ?>
+              <input class="btn btn-blue" id="btn-quiz-next" type="submit" value="結果画面へ" disabled>
+            <?php else : ?>
+              <input class="btn btn-blue" id="btn-quiz-next" type="submit" value="次へ" disabled>
+            <?php endif ?>
+          </form>
+        <?php endif ?>
       </div>
     </div>
   </div>

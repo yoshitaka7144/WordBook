@@ -8,6 +8,7 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/headerMenu.js"></script>
     <script src="js/dataTable.js"></script>
+    <script src="js/quiz.js"></script>
 </head>
 
 <body>
