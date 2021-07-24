@@ -4,7 +4,7 @@ define("DB_HOST", "localhost");
 define("DB_NAME", "test");
 define("DB_USER", "yoshi");
 define("DB_PASS", "test");
-define("DB_ERROR_MESSAGE","データベース接続にてエラーが発生しました。");
+define("DB_ERROR_MESSAGE","データベース処理にてエラーが発生しました。");
 
 define("PAGE_TYPE_DEFAULT", 0);
 define("PAGE_TYPE_ERROR", -1);

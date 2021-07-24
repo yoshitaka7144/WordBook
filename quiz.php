@@ -51,7 +51,9 @@ if (!empty($settingType)) {
   }
 }
 
-if (!$finished) {
+if ($finished) {
+  $incorrectCount = isset($_SESSION["incorrect"]) ? count($_SESSION["incorrect"]) : 0;
+} else {
   $quizData = $_SESSION["quizData"];
   $question = $quizData[$_SESSION["quizCurrentIndex"]]["question"];
   $answer = $quizData[$_SESSION["quizCurrentIndex"]]["answer"];
@@ -80,8 +82,11 @@ if (!$finished) {
           <div class="result">
             <p class="title">クイズ結果</p>
             <p class="message">aaaaaaa</p>
+            <p><?="問題数:".$_SESSION["quizCount"] ?></p>
+            <p><?="不正解数:".$incorrectCount ?></p>
             <?php
             if (isset($_SESSION["incorrect"])) {
+              echo "<p>不正解だった問題と答え</p>";
               foreach ($_SESSION["incorrect"] as $item) {
                 echo  "<p>問題:" . h($item["question"]) . "答え：" . h($item["answer"]) . "</p>";
               }

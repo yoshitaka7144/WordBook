@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+$_SESSION = array();
+session_destroy();
 require_once("config.php");
 require_once("validation.php");
 
@@ -72,52 +74,69 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
           <p class="message">種類：<?php echo h($inputType) ?></p>
           <p class="message">問題：<?php echo h($inputQuestion) ?></p>
           <p class="message">答え：<?php echo h($inputAnswer) ?></p>
-          <form action="" method="post">
-            <input type="submit" value="戻る">
-            <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
-            <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
-            <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
-            <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
-          </form>
-          <form action="dataRegist.php" method="post">
-            <input type="submit" name="registType" value="<?php echo $registType ?>">
-            <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
-            <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
-            <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
-            <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
-          </form>
+          <div class="btn-wrapper">
+            <form action="" method="post">
+              <input class="btn btn-gray" type="submit" value="戻る">
+              <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
+              <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
+              <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
+              <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
+            </form>
+            <form action="dataRegist.php" method="post">
+              <input class="btn" type="submit" name="registType" value="<?php echo $registType ?>">
+              <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
+              <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
+              <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
+              <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
+            </form>
+          </div>
         </div>
       <?php else : ?>
         <div class="edit-input">
-          <p class="title">問題編集</p>
+          <p class="title">編集</p>
           <p class="message">問題の登録、更新、削除を行います</p>
           <p class="message">データ一覧の行を選択で参照できます</p>
+          <p class="message color-blue">※登録時はIDは不要です</p>
+          <?php if ($pageType === PAGE_TYPE_ERROR) : ?>
+            <div id="error-area">
+              <?php foreach ($errors as $error) : ?>
+                <p class="message color-red"><?php echo $error ?></p>
+              <?php endforeach ?>
+            </div>
+          <?php endif ?>
           <form action="" method="post">
-            <?php if ($pageType === PAGE_TYPE_ERROR) : ?>
-              <div id="error-area">
-                <?php foreach ($errors as $error) : ?>
-                  <p class="error-message"><?php echo $error ?></p>
-                <?php endforeach ?>
-              </div>
-            <?php endif ?>
-            <label for="inputId">ID(登録時は不要です)</label>
-            <input type="text" name="inputId" id="inputId" value="<?php echo h($inputId) ?>">
-            <label for="inputType">種類</label>
-            <select name="inputType" id="inputType">
-              <option value="和訳" <?php if ($inputType === "和訳") {
-                                    echo "selected";
-                                  } ?>>和訳</option>
-              <option value="英訳" <?php if ($inputType === "英訳") {
-                                    echo "selected";
-                                  } ?>>英訳</option>
-            </select>
-            <label for="inputQuestion">問題</label>
-            <input type="text" name="inputQuestion" id="inputQuestion" value="<?php echo h($inputQuestion) ?>">
-            <label for="inputAnswer">答え</label>
-            <input type="text" name="inputAnswer" id="inputAnswer" value="<?php echo h($inputAnswer) ?>">
-            <input type="submit" name="create" value="登録">
-            <input type="submit" name="update" value="更新">
-            <input type="submit" name="delete" value="削除">
+            <table class="input-form">
+              <tr>
+                <th>ID</th>
+                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?php echo h($inputId) ?>"></td>
+              </tr>
+              <tr>
+                <th>種類</th>
+                <td>
+                  <select class="form-select" name="inputType" id="inputType">
+                    <option value="和訳" <?php if ($inputType === "和訳") {
+                                          echo "selected";
+                                        } ?>>和訳</option>
+                    <option value="英訳" <?php if ($inputType === "英訳") {
+                                          echo "selected";
+                                        } ?>>英訳</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>問題</th>
+                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?php echo h($inputQuestion) ?>"></td>
+              </tr>
+              <tr>
+                <th>答え</th>
+                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?php echo h($inputAnswer) ?>"></td>
+              </tr>
+            </table>
+            <div class="btn-wrapper">
+              <input class="btn btn-small btn-blue" type="submit" name="create" value="登録">
+              <input class="btn btn-small btn-green" type="submit" name="update" value="更新">
+              <input class="btn btn-small btn-red" type="submit" name="delete" value="削除">
+            </div>
           </form>
         </div>
         <div class="edit-table">

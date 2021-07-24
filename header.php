@@ -18,16 +18,16 @@
         </div>
         <nav id="pc-nav">
             <ul>
-                <li><a href="./edit.php">編集</a></li>
-                <li><a href="#">和訳</a></li>
-                <li><a href="#">英訳</a></li>
+                <li><a href="edit.php">編集</a></li>
+                <li><a href="quizSetting.php?type=和訳">和訳</a></li>
+                <li><a href="quizSetting.php?type=英訳">英訳</a></li>
             </ul>
         </nav>
         <nav id="sp-nav">
             <ul>
-                <li><a href="./edit.php">編集</a></li>
-                <li><a href="#">和訳</a></li>
-                <li><a href="#">英訳</a></li>
+                <li><a href="edit.php">編集</a></li>
+                <li><a href="quizSetting.php?type=和訳">和訳</a></li>
+                <li><a href="quizSetting.php?type=英訳">英訳</a></li>
                 <li id="close"><span>× 閉じる</span></li>
             </ul>
         </nav>

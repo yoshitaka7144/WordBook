@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("config.php");
 require_once("validation.php");
 
@@ -9,7 +9,13 @@ $inputQuestion = filter_input(INPUT_POST, "inputQuestion");
 $inputAnswer = filter_input(INPUT_POST, "inputAnswer");
 $registType = filter_input(INPUT_POST, "registType");
 $errors = validation($_POST, $registType);
-$resultMessage = "test";
+$resultMessage = "";
+$errored = false;
+
+if (isset($_SESSION["dbConnected"])) {
+    header("Location: edit.php");
+    exit;
+}
 
 if (!empty($errors)) {
     $resultMessage = "不正な入力内容があります。やり直してください。";
@@ -39,9 +45,9 @@ if (!empty($errors)) {
             $stmt->bindValue(":id", (int)$inputId, PDO::PARAM_INT);
             $stmt->execute();
             $count = $stmt->rowCount();
-            if($count <= 0){
+            if ($count <= 0) {
                 $resultMessage = "更新対象データが存在しません。";
-            }else{
+            } else {
                 $resultMessage = $registType . "処理が完了しました。";
             }
         } elseif ($registType === REGIST_TYPE_DELETE) {
@@ -49,16 +55,18 @@ if (!empty($errors)) {
             $stmt->bindValue(":id", (int)$inputId, pdo::PARAM_INT);
             $stmt->execute();
             $count = $stmt->rowCount();
-            if($count <= 0){
+            if ($count <= 0) {
                 $resultMessage = "削除対象データが存在しません。";
-            }else{
+            } else {
                 $resultMessage = $registType . "処理が完了しました。";
             }
         } else {
             $resultMessage = "不正な処理が行われました。やり直してください。";
         }
+        $_SESSION["dbConnected"] = true;
     } catch (PDOException $e) {
         $resultMessage = $e->getMessage();
+        $errored = true;
     }
 }
 
@@ -68,6 +76,9 @@ if (!empty($errors)) {
     <div class="container">
         <div class="main-contents">
             <div class="edit-confirm">
+                <?php if($errored): ?>
+                    <p class="error-message"><?=DB_ERROR_MESSAGE?></p>
+                <?php endif ?>
                 <p><?php echo $resultMessage ?></p>
                 <a href="edit.php" class="btn btn-green">管理画面</a>
                 <a href="index.php" class="btn btn-blue">トップ画面</a>
