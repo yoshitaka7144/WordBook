@@ -407,7 +407,12 @@ footer {
   }
 
   .edit-input,
-  .edit-table {
+  .edit-table,
+  .edit-confirm {
+    width: 100%;
+  }
+
+  .confirm-table{
     width: 100%;
   }
 
