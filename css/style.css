@@ -340,17 +340,28 @@ footer {
   text-align: center;
 }
 
-.edit-confirm form {
+.confirm-table {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.confirm-table th,
+.confirm-table td {
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.confirm-table th {
+  font-size: 14px;
+  text-align: center;
+  width: 45%;
+  background-color: #eee;
+}
+
+.confirm-table td {
   text-align: left;
-}
-
-.edit-confirm form input,
-.edit-confirm form select {
-  display: block;
-}
-
-.error-message {
-  color: red;
+  width: 55%;
 }
 
 .edit-table {

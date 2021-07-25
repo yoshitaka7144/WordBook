@@ -12,10 +12,18 @@ function validation($data, $registType){
 
   if(empty($data["inputQuestion"])){
     $errors[] = "問題を入力してください";
+  }else{
+    if($data["inputType"] === "和訳" && !preg_match("/^[a-zA-Z]+$/", $data["inputQuestion"])){
+      $errors[] = "問題は英語で入力してください";
+    }
   }
 
   if(empty($data["inputAnswer"])){
     $errors[] = "答えを入力してください";
+  }else{
+    if($data["inputType"] === "英訳" && !preg_match("/^[a-zA-Z]+$/", $data["inputAnswer"])){
+      $errors[] = "答えは英語で入力してください";
+    }
   }
 
   return $errors;

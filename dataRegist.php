@@ -76,12 +76,14 @@ if (!empty($errors)) {
     <div class="container">
         <div class="main-contents">
             <div class="edit-confirm">
-                <?php if($errored): ?>
-                    <p class="error-message"><?=DB_ERROR_MESSAGE?></p>
+                <?php if ($errored) : ?>
+                    <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
                 <?php endif ?>
                 <p><?php echo $resultMessage ?></p>
-                <a href="edit.php" class="btn btn-green">管理画面</a>
-                <a href="index.php" class="btn btn-blue">トップ画面</a>
+                <div class="btn-wrapper">
+                    <a href="edit.php" class="btn btn-green btn-normal">管理画面</a>
+                    <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>
+                </div>
             </div>
         </div>
     </div>

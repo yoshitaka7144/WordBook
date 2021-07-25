@@ -60,6 +60,8 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
   }
 }
 
+$btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "btn-green", REGIST_TYPE_DELETE => "btn-red"];
+
 ?>
 <?php include(dirname(__FILE__) . '/header.php'); ?>
 <main>
@@ -67,13 +69,27 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
     <div class="main-contents">
       <?php if ($pageType === PAGE_TYPE_CONFIRM) : ?>
         <div class="edit-confirm">
-          <p class="title"><?php echo $registType ?>内容確認</p>
-          <?php if ($registType !== REGIST_TYPE_CREATE) : ?>
-            <p class="message">ID：<?php echo h($inputId) ?></p>
-          <?php endif ?>
-          <p class="message">種類：<?php echo h($inputType) ?></p>
-          <p class="message">問題：<?php echo h($inputQuestion) ?></p>
-          <p class="message">答え：<?php echo h($inputAnswer) ?></p>
+          <p class="title"><?=h($registType)?>：内容確認</p>
+          <table class="confirm-table">
+            <?php if ($registType !== REGIST_TYPE_CREATE) : ?>
+              <tr>
+                <th>ID</th>
+                <td><?= h($inputId) ?></td>
+              </tr>
+            <?php endif ?>
+            <tr>
+              <th>種類</th>
+              <td><?= h($inputType) ?></td>
+            </tr>
+            <tr>
+              <th>問題</th>
+              <td><?= h($inputQuestion) ?></td>
+            </tr>
+            <tr>
+              <th>答え</th>
+              <td><?= h($inputAnswer) ?></td>
+            </tr>
+          </table>
           <div class="btn-wrapper">
             <form action="" method="post">
               <input class="btn btn-gray" type="submit" value="戻る">
@@ -83,7 +99,7 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
               <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
             </form>
             <form action="dataRegist.php" method="post">
-              <input class="btn" type="submit" name="registType" value="<?php echo $registType ?>">
+              <input class="btn <?= $btnColor[$registType] ?>" type="submit" name="registType" value="<?php echo $registType ?>">
               <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
               <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
               <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
