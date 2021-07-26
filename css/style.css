@@ -201,6 +201,7 @@ footer {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .message {
@@ -299,6 +300,7 @@ footer {
 .input-form {
   width: 100%;
   border-collapse: collapse;
+  font-size: 16px;
 }
 
 .input-form th,
@@ -308,7 +310,6 @@ footer {
 }
 
 .input-form th {
-  font-size: 14px;
   text-align: center;
   width: 45%;
   background-color: #eee;
@@ -327,6 +328,7 @@ footer {
 }
 
 .input-form .form-select {
+  width: 75px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -463,7 +465,42 @@ footer {
   padding: 20px;
   margin: 10px;
   border-radius: 6px;
+}
+
+.quiz-fieldset {
+  margin: 15px 0;
+  padding: 15px;
+  border: solid 1px #0018ff33;
+  border-radius: 6px;
+}
+
+.quiz-fieldset legend {
+  font-size: 16px;
+  color: #0000ff;
+  text-align: left;
+}
+
+.quiz-fieldset .description-table {
+  width: 100%;
+  font-size: 16px;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+.quiz-fieldset .description-table th,
+.quiz-fieldset .description-table td {
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.quiz-fieldset .description-table th {
+  font-size: 14px;
   text-align: center;
+  background-color: #eee;
+}
+
+.quiz-fieldset .description-table td {
+  text-align: left;
 }
 
 .choices {
@@ -472,11 +509,43 @@ footer {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .choice-area {
   width: 50%;
   padding: 10px;
+  text-align: center;
+}
+
+.choice-area input[type="radio"] {
+  display: none;
+}
+
+.choice-area input[type="radio"]:checked + .choice-label {
+  background: #31a9ee;
+  color: #ffffff;
+}
+
+.choice-area .choice-label {
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  border: 2px solid #006dd9;
+  border-radius: 20px;
+  width: 65%;
+  padding: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.choice-area .choice-label:hover {
+  background-color: #e2edf9;
 }
 
 #text-answer {
@@ -508,8 +577,12 @@ footer {
   }
   .edit-input,
   .edit-table,
-  .edit-confirm {
+  .edit-confirm,
+  .quiz {
     width: 100%;
+  }
+  .input-form {
+    font-size: 14px;
   }
   .confirm-table {
     width: 100%;
@@ -542,6 +615,12 @@ footer {
     width: 70%;
   }
   #data-table {
+    font-size: 14px;
+  }
+  .quiz-fieldset legend {
+    font-size: 14px;
+  }
+  .quiz-fieldset .description-table {
     font-size: 14px;
   }
 }

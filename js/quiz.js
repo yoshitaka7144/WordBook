@@ -10,7 +10,7 @@ $(function () {
     }
     if(choice === ""){
       //
-      $("#answer-message").text("回答を選択して下さい。");
+      $("#answer-message").text("解答を選択して下さい。");
     }else{
       if(choice === answer){
         $("#answer-message").text("正解です。");

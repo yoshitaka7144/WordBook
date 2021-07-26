@@ -82,8 +82,8 @@ if ($finished) {
           <div class="result">
             <p class="title">クイズ結果</p>
             <p class="message">aaaaaaa</p>
-            <p><?="問題数:".$_SESSION["quizCount"] ?></p>
-            <p><?="不正解数:".$incorrectCount ?></p>
+            <p><?= "問題数:" . $_SESSION["quizCount"] ?></p>
+            <p><?= "不正解数:" . $incorrectCount ?></p>
             <?php
             if (isset($_SESSION["incorrect"])) {
               echo "<p>不正解だった問題と答え</p>";
@@ -101,24 +101,29 @@ if ($finished) {
             <p id="text-question"><?= h($question) ?></p>
             <p id="text-answer"><?= h($answer) ?></p>
           </div>
-          <div class="choices">
-            <?php
-            for ($i = 1; $i <= count($choices); $i++) {
-              $choice = $choices[$i - 1];
-              echo "<div class='choice-area' id='choice-area-" . $i . "'><input type='radio' name='choice' id='choice-" . $i . "' value='" . h($choice) . "'><label for='choice-" . $i . "' class=''>" . h($choice) . "</label></div>";
-            }
-            ?>
-          </div>
+          <fieldset class="quiz-fieldset">
+            <legend>選択肢</legend>
+            <div class="choices">
+              <?php
+              for ($i = 1; $i <= count($choices); $i++) {
+                $choice = $choices[$i - 1];
+                echo "<div class='choice-area' id='choice-area-" . $i . "'><input type='radio' name='choice' id='choice-" . $i . "' value='" . h($choice) . "'><label for='choice-" . $i . "' class='choice-label'>" . h($choice) . "</label></div>";
+              }
+              ?>
+            </div>
+          </fieldset>
           <p id="answer-message" class="message"></p>
           <form action="" method="post">
             <input type="hidden" name="incorrect-question" value="">
             <input type="hidden" name="incorrect-answer" value="">
-            <input class="btn btn-green" type="button" id="btn-answer" value="回答する">
-            <?php if ($count === $_SESSION["quizCount"]) : ?>
-              <input class="btn btn-blue" id="btn-quiz-next" type="submit" value="結果画面へ" disabled>
-            <?php else : ?>
-              <input class="btn btn-blue" id="btn-quiz-next" type="submit" value="次へ" disabled>
-            <?php endif ?>
+            <div class="btn-wrapper">
+              <input class="btn btn-green btn-normal" type="button" id="btn-answer" value="解答する">
+              <?php if ($count === $_SESSION["quizCount"]) : ?>
+                <input class="btn btn-blue btn-normal" id="btn-quiz-next" type="submit" value="結果画面へ" disabled>
+              <?php else : ?>
+                <input class="btn btn-blue btn-normal" id="btn-quiz-next" type="submit" value="次へ" disabled>
+              <?php endif ?>
+            </div>
           </form>
         <?php endif ?>
       </div>

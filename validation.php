@@ -8,6 +8,10 @@ function validation($data, $registType){
 
   if(empty($data["inputType"])){
     $errors[] = "種類を選択してください";
+  }else{
+    if($data["inputType"] !== "和訳" && $data["inputType"] !== "英訳"){
+      $errors[] = "種類が不正な入力です";
+    }
   }
 
   if(empty($data["inputQuestion"])){

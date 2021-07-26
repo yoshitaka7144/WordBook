@@ -195,8 +195,8 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
             <div class="pagination">
               <p class="message"><span id="current-page">1</span> / <span id="max-page"><?php echo $maxPage ?></span> ページ</p>
               <div class="btn-wrapper">
-                <input class="btn btn-blue btn-normal" id="btn-prev" type="button" value="前のページへ" disabled>
-                <input class="btn btn-blue btn-normal" id="btn-next" type="button" value="次のページへ" <?php echo (int)$maxPage === 1 ? "disabled" : "" ?>>
+                <input class="btn btn-blue btn-normal" id="btn-prev" type="button" value="前へ" disabled>
+                <input class="btn btn-blue btn-normal" id="btn-next" type="button" value="次へ" <?php echo (int)$maxPage === 1 ? "disabled" : "" ?>>
               </div>
             </div>
           <?php endif ?>
