@@ -79,7 +79,7 @@ if (!empty($errors)) {
                 <?php if ($errored) : ?>
                     <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
                 <?php endif ?>
-                <p><?php echo $resultMessage ?></p>
+                <p class="message"><?php echo $resultMessage ?></p>
                 <div class="btn-wrapper">
                     <a href="edit.php" class="btn btn-green btn-normal">管理画面</a>
                     <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>

@@ -181,6 +181,9 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  form{
+    width: 50%;
+  }
 }
 
 .btn {
@@ -190,6 +193,7 @@ footer {
   color: white;
   display: inline-block;
   border-radius: 5px;
+  text-align: center;
   &:hover {
     opacity: 0.8;
   }
@@ -454,37 +458,48 @@ footer {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+
+  .choice-area {
+    width: 40%;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 10px;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    input[type="radio"]:checked + .choice-label {
+      background: #31a9ee;
+      color: #ffffff;
+    }
+
+    .choice-label {
+      display: inline-block;
+      font-size: 16px;
+      border: 1px solid #006dd9;
+      border-radius: 20px;
+      width: 65%;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .choice-label:hover {
+      background-color: #e2edf9;
+    }
+  }
 }
 
-.choice-area {
-  width: 50%;
-  padding: 10px;
+#answer-message{
   text-align: center;
+}
 
-  input[type="radio"] {
-    display: none;
-  }
-
-  input[type="radio"]:checked + .choice-label {
-    background: #31a9ee;
-    color: #ffffff;
-  }
-
-  .choice-label {
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px;
-    border: 2px solid #006dd9;
-    border-radius: 20px;
-    width: 65%;
-    padding: 5px;
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .choice-label:hover {
-    background-color: #e2edf9;
-  }
+#text-question{
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
 }
 
 #text-answer {
@@ -492,11 +507,11 @@ footer {
 }
 
 .correct {
-  background-color: rgb(141, 218, 174);
+  background-color: #9af3be;
 }
 
 .incorrect {
-  background-color: rgb(236, 131, 131);
+  background-color: #ffbebe;
 }
 
 @media screen and (max-width: 640px) {
@@ -544,6 +559,10 @@ footer {
     flex-wrap: wrap;
   }
 
+  .btn {
+    font-size: 16px;
+  }
+
   .btn-normal,
   .btn-small {
     width: 60%;
@@ -571,6 +590,20 @@ footer {
 
     .description-table {
       font-size: 14px;
+    }
+  }
+
+  .choices {
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+    .choice-area {
+      width: 100%;
+      margin: 5px;
+
+      .choice-label {
+        font-size: 14px;
+      }
     }
   }
 }

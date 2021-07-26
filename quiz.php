@@ -92,15 +92,18 @@ if ($finished) {
               }
             }
             ?>
-            <a href="quizSetting.php" class="btn btn-blue">クイズ設定画面へ</a>
-            <a href="index.php" class="btn btn-blue">トップ画面へ</a>
+            <div class="btn-wrapper">
+              <a href="quizSetting.php" class="btn btn-blue btn-normal">クイズ設定画面へ</a>
+              <a href="index.php" class="btn btn-blue btn-normal">トップ画面へ</a>
+            </div>
           </div>
         <?php else : ?>
-          <div class="sentence">
-            <p class="message"><?= "第" . $count . "問目" ?></p>
+          <p class="title"><?= "第 " . $count . " 問目" ?></p>
+          <fieldset class="quiz-fieldset">
+            <legend>問題</legend>
             <p id="text-question"><?= h($question) ?></p>
             <p id="text-answer"><?= h($answer) ?></p>
-          </div>
+          </fieldset>
           <fieldset class="quiz-fieldset">
             <legend>選択肢</legend>
             <div class="choices">

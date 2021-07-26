@@ -93,14 +93,14 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
           <p class="message">上記の内容で<?= h($registType) ?>処理を行います</p>
           <div class="btn-wrapper">
             <form action="" method="post">
-              <input class="btn btn-gray" type="submit" value="戻る">
+              <input class="btn btn-gray btn-normal" type="submit" value="戻る">
               <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
               <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
               <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
               <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
             </form>
             <form action="dataRegist.php" method="post">
-              <input class="btn <?= $btnColor[$registType] ?>" type="submit" name="registType" value="<?php echo $registType ?>">
+              <input class="btn btn-normal <?= $btnColor[$registType] ?>" type="submit" name="registType" value="<?php echo $registType ?>">
               <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
               <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
               <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
