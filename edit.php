@@ -69,7 +69,7 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
     <div class="main-contents">
       <?php if ($pageType === PAGE_TYPE_CONFIRM) : ?>
         <div class="edit-confirm">
-          <p class="title"><?=h($registType)?>：内容確認</p>
+          <p class="title"><?= h($registType) ?>：内容確認</p>
           <table class="confirm-table">
             <?php if ($registType !== REGIST_TYPE_CREATE) : ?>
               <tr>
@@ -90,6 +90,7 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
               <td><?= h($inputAnswer) ?></td>
             </tr>
           </table>
+          <p class="message">上記の内容で<?= h($registType) ?>処理を行います</p>
           <div class="btn-wrapper">
             <form action="" method="post">
               <input class="btn btn-gray" type="submit" value="戻る">
@@ -157,15 +158,16 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
         </div>
         <div class="edit-table">
           <p class="title">登録データ一覧</p>
-          <p class="message">データを選択すると問題編集欄に反映されます</p>
-          <div class="radio">
+          <fieldset class="radio-fieldset">
+            <legend>データ表示対象</legend>
             <input id="radio-all" name="radio" type="radio" value="all" checked>
             <label for="radio-all" class="radio-label">全データ</label>
             <input id="radio-japanese" name="radio" type="radio" value="和訳">
             <label for="radio-japanese" class="radio-label">和訳</label>
             <input id="radio-English" name="radio" type="radio" value="英訳">
             <label for="radio-English" class="radio-label">英訳</label>
-          </div>
+          </fieldset>
+          <p class="message">データ行を選択すると編集欄に反映されます</p>
           <?php if (!empty($dbErrorMessage)) : ?>
             <p class="error-message"><?= DB_ERROR_MESSAGE ?></p>
             <p class="message"><?= $dbErrorMessage ?></p>
@@ -191,9 +193,11 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
               </tbody>
             </table>
             <div class="pagination">
-              <p class="message"><span id="current-page">1</span> / <span id="max-page"><?php echo $maxPage ?></span></p>
-              <input class="btn btn-blue" id="btn-prev" type="button" value="prev" disabled>
-              <input class="btn btn-blue" id="btn-next" type="button" value="next" <?php echo (int)$maxPage === 1 ? "disabled" : "" ?>>
+              <p class="message"><span id="current-page">1</span> / <span id="max-page"><?php echo $maxPage ?></span> ページ</p>
+              <div class="btn-wrapper">
+                <input class="btn btn-blue btn-normal" id="btn-prev" type="button" value="前のページへ" disabled>
+                <input class="btn btn-blue btn-normal" id="btn-next" type="button" value="次のページへ" <?php echo (int)$maxPage === 1 ? "disabled" : "" ?>>
+              </div>
             </div>
           <?php endif ?>
         </div>
