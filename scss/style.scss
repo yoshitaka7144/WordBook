@@ -153,22 +153,13 @@ footer {
   justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-}
-
-.menu {
-  width: 50%;
-  background-color: white;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 6px;
-  text-align: center;
+  padding: 15px;
 }
 
 .title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
@@ -181,7 +172,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  form{
+  form {
     width: 50%;
   }
 }
@@ -236,6 +227,15 @@ footer {
   box-shadow: 2px 2px #504e4e;
 }
 
+.menu {
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
 .edit-input {
   width: 40%;
   height: 100%;
@@ -243,7 +243,6 @@ footer {
   padding: 20px;
   margin: 10px;
   border-radius: 6px;
-  text-align: center;
   form {
     text-align: left;
     input,
@@ -319,7 +318,7 @@ footer {
   }
 
   td {
-    text-align: left;
+    text-align: center;
     width: 55%;
   }
 }
@@ -331,7 +330,6 @@ footer {
   padding: 20px;
   margin: 10px;
   border-radius: 6px;
-  text-align: center;
 }
 
 #data-table {
@@ -347,6 +345,19 @@ footer {
   td {
     padding: 10px 0;
     text-align: center;
+  }
+
+  td:nth-child(1){
+    width: 20%;
+  }
+  td:nth-child(2){
+    width: 20%;
+  }
+  td:nth-child(3){
+    width: 30%;
+  }
+  td:nth-child(4){
+    width: 30%;
   }
 
   tr:nth-child(odd) {
@@ -407,6 +418,7 @@ footer {
 
 .pagination {
   margin-top: 10px;
+  text-align: center;
 }
 
 .quiz {
@@ -418,8 +430,8 @@ footer {
 }
 
 .quiz-fieldset {
-  margin: 15px 0;
-  padding: 15px;
+  margin: 10px 0;
+  padding: 10px;
   border: solid 1px #0018ff33;
   border-radius: 6px;
 
@@ -442,7 +454,6 @@ footer {
     }
 
     th {
-      font-size: 14px;
       text-align: center;
       background-color: #eee;
     }
@@ -492,11 +503,18 @@ footer {
   }
 }
 
-#answer-message{
+#notification-area{
+  display: none;
   text-align: center;
+  padding: 10px;
 }
 
-#text-question{
+#answer-message {
+  border-radius: 10px;
+  padding: 7px;
+}
+
+#text-question {
   font-size: 26px;
   font-weight: bold;
   text-align: center;
@@ -512,6 +530,51 @@ footer {
 
 .incorrect {
   background-color: #ffbebe;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+
+  .result-table {
+    width: 45%;
+    font-size: 16px;
+    border-collapse: collapse;
+    margin: 0 auto;
+
+    th,
+    td {
+      width: 50%;
+      padding: 15px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      text-align: right;
+      background-color: #eee;
+    }
+
+    td {
+      text-align: right;
+    }
+  }
+
+  .incorrect-area {
+    width: 45%;
+    height: 290px;
+    overflow-y: scroll;
+    font-size: 16px;
+    border: solid 2px #0018ff33;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 0 auto;
+
+    legend {
+      font-size: 16px;
+      color: #0000ff;
+      text-align: center;
+    }
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -604,6 +667,20 @@ footer {
       .choice-label {
         font-size: 14px;
       }
+    }
+  }
+
+  .result {
+    flex-direction: column;
+
+    .result-table {
+      width: 85%;
+      font-size: 14px;
+    }
+
+    .incorrect-area {
+      width: 85%;
+      font-size: 14px;
     }
   }
 }

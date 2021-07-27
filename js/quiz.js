@@ -8,14 +8,17 @@ $(function () {
         break;
       }
     }
+    $("#notification-area").css("display","block");
     if(choice === ""){
       //
       $("#answer-message").text("解答を選択して下さい。");
     }else{
       if(choice === answer){
-        $("#answer-message").text("正解です。");
+        $("#answer-message").text("正解!!!");
+        $("#answer-message").addClass("correct");
       }else{
-        $("#answer-message").text("不正解です。");
+        $("#answer-message").text("不正解");
+        $("#answer-message").addClass("incorrect");
         $("input[name=incorrect-question]").val($("#text-question").text());
         $("input[name=incorrect-answer]").val($("#text-answer").text());
       }

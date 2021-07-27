@@ -185,22 +185,13 @@ footer {
           justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-}
-
-.menu {
-  width: 50%;
-  background-color: white;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 6px;
-  text-align: center;
+  padding: 15px;
 }
 
 .title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
@@ -283,6 +274,15 @@ footer {
           box-shadow: 2px 2px #504e4e;
 }
 
+.menu {
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
 .edit-input {
   width: 40%;
   height: 100%;
@@ -290,7 +290,6 @@ footer {
   padding: 20px;
   margin: 10px;
   border-radius: 6px;
-  text-align: center;
 }
 
 .edit-input form {
@@ -369,7 +368,7 @@ footer {
 }
 
 .confirm-table td {
-  text-align: left;
+  text-align: center;
   width: 55%;
 }
 
@@ -380,7 +379,6 @@ footer {
   padding: 20px;
   margin: 10px;
   border-radius: 6px;
-  text-align: center;
 }
 
 #data-table {
@@ -397,6 +395,22 @@ footer {
 #data-table td {
   padding: 10px 0;
   text-align: center;
+}
+
+#data-table td:nth-child(1) {
+  width: 20%;
+}
+
+#data-table td:nth-child(2) {
+  width: 20%;
+}
+
+#data-table td:nth-child(3) {
+  width: 30%;
+}
+
+#data-table td:nth-child(4) {
+  width: 30%;
 }
 
 #data-table tr:nth-child(odd) {
@@ -462,6 +476,7 @@ footer {
 
 .pagination {
   margin-top: 10px;
+  text-align: center;
 }
 
 .quiz {
@@ -473,8 +488,8 @@ footer {
 }
 
 .quiz-fieldset {
-  margin: 15px 0;
-  padding: 15px;
+  margin: 10px 0;
+  padding: 10px;
   border: solid 1px #0018ff33;
   border-radius: 6px;
 }
@@ -499,7 +514,6 @@ footer {
 }
 
 .quiz-fieldset .description-table th {
-  font-size: 14px;
   text-align: center;
   background-color: #eee;
 }
@@ -554,8 +568,15 @@ footer {
   background-color: #e2edf9;
 }
 
-#answer-message {
+#notification-area {
+  display: none;
   text-align: center;
+  padding: 10px;
+}
+
+#answer-message {
+  border-radius: 10px;
+  padding: 7px;
 }
 
 #text-question {
@@ -574,6 +595,55 @@ footer {
 
 .incorrect {
   background-color: #ffbebe;
+}
+
+.result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.result .result-table {
+  width: 45%;
+  font-size: 16px;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.result .result-table th,
+.result .result-table td {
+  width: 50%;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.result .result-table th {
+  text-align: right;
+  background-color: #eee;
+}
+
+.result .result-table td {
+  text-align: right;
+}
+
+.result .incorrect-area {
+  width: 45%;
+  height: 290px;
+  overflow-y: scroll;
+  font-size: 16px;
+  border: solid 2px #0018ff33;
+  border-radius: 6px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.result .incorrect-area legend {
+  font-size: 16px;
+  color: #0000ff;
+  text-align: center;
 }
 
 @media screen and (max-width: 640px) {
@@ -655,6 +725,20 @@ footer {
     margin: 5px;
   }
   .choices .choice-area .choice-label {
+    font-size: 14px;
+  }
+  .result {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .result .result-table {
+    width: 85%;
+    font-size: 14px;
+  }
+  .result .incorrect-area {
+    width: 85%;
     font-size: 14px;
   }
 }

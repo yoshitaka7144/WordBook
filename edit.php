@@ -169,7 +169,7 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
           </fieldset>
           <p class="message">データ行を選択すると編集欄に反映されます</p>
           <?php if (!empty($dbErrorMessage)) : ?>
-            <p class="error-message"><?= DB_ERROR_MESSAGE ?></p>
+            <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
             <p class="message"><?= $dbErrorMessage ?></p>
           <?php else : ?>
             <table id="data-table">

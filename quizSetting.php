@@ -58,7 +58,6 @@ try {
             </table>
             <p class="message">・解答方法について</p>
             <p class="message">　4つの選択肢の中から適切なものを選択し、"解答する"ボタンを押下してください。正解 or 不正解のメッセージが表示され"次へ"ボタンが押下可能になります。ボタン押下で次の問題へ進みます。最後の問題の場合は結果画面へ進みます。</p>
-            <p class="message">・例題</p>
           </fieldset>
           <fieldset class="quiz-fieldset">
             <legend>設定</legend>
