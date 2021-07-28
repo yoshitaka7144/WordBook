@@ -49,15 +49,15 @@ try {
             <table class="description-table">
               <tr>
                 <th>和訳</th>
-                <td>問題の英単語に対して同じ意味を表す適切な日本語を選択する</td>
+                <td>問題の英単語に対して同じ意味を表す適切な<span class="highlight-y">日本語を選択する</span></td>
               </tr>
               <tr>
                 <th>英訳</th>
-                <td>問題の日本語に対して同じ意味を表す適切な英単語を選択する</td>
+                <td>問題の日本語に対して同じ意味を表す適切な<span class="highlight-y">英単語を選択する</span></td>
               </tr>
             </table>
             <p class="message">・解答方法について</p>
-            <p class="message">　4つの選択肢の中から適切なものを選択し、"解答する"ボタンを押下してください。正解 or 不正解のメッセージが表示され"次へ"ボタンが押下可能になります。ボタン押下で次の問題へ進みます。最後の問題の場合は結果画面へ進みます。</p>
+            <p class="message">　4つの選択肢の中から適切なものを選択し、<span class="highlight-g">解答するボタン</span>を押下してください。正解 or 不正解のメッセージが表示され<span class="highlight-b">次へボタン</span>が押下可能になります。ボタン押下で次の問題へ進みます。最後の問題の場合は結果画面へ進みます。</p>
           </fieldset>
           <fieldset class="quiz-fieldset">
             <legend>設定</legend>
@@ -97,7 +97,7 @@ try {
                 </tr>
               </table>
               <div class="btn-wrapper">
-                <input class="btn btn-blue btn-normal" type="submit" value="スタート">
+                <input class="btn btn-blue btn-normal poyopoyo" type="submit" value="スタート">
               </div>
             </form>
           </fieldset>

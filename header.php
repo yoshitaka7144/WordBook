@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Word Book</title>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/headerMenu.js"></script>
@@ -23,15 +24,16 @@
                 <li><a href="quizSetting.php?type=英訳">英訳</a></li>
             </ul>
         </nav>
-        <nav id="sp-nav">
-            <ul>
-                <li><a href="edit.php">問題編集</a></li>
-                <li><a href="quizSetting.php?type=和訳">和訳</a></li>
-                <li><a href="quizSetting.php?type=英訳">英訳</a></li>
-                <li id="close"><span>× 閉じる</span></li>
-            </ul>
-        </nav>
         <div id="hamburger">
             <span></span>
         </div>
     </header>
+    <nav id="sp-nav">
+        <ul>
+            <li><a href="./">トップ画面</a></li>
+            <li><a href="edit.php">問題編集</a></li>
+            <li><a href="quizSetting.php?type=和訳">和訳クイズ</a></li>
+            <li><a href="quizSetting.php?type=英訳">英訳クイズ</a></li>
+            <li id="close"><span><i class="fas fa-times"></i>閉じる</span></li>
+        </ul>
+    </nav>

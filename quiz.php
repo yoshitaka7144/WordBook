@@ -110,23 +110,23 @@ if ($finished) {
               <table class="result-table">
                 <tr>
                   <th>問題種類</th>
-                  <td><?= $_SESSION["quizType"] ?></td>
+                  <td class="fadeup delay-time-1"><?= $_SESSION["quizType"] ?></td>
                 </tr>
                 <tr>
                   <th>問題数</th>
-                  <td><?= $_SESSION["quizCount"] ?></td>
+                  <td class="fadeup delay-time-2"><?= $_SESSION["quizCount"] ?></td>
                 </tr>
                 <tr>
                   <th>不正解数</th>
-                  <td><?= $incorrectCount ?></td>
+                  <td class="fadeup delay-time-3"><?= $incorrectCount ?></td>
                 </tr>
                 <tr>
                   <th>正答率</th>
-                  <td><?= round(($_SESSION["quizCount"] - $incorrectCount) / ($_SESSION["quizCount"]) * 100, 1) ?>%</td>
+                  <td class="fadeup delay-time-4"><?= round(($_SESSION["quizCount"] - $incorrectCount) / ($_SESSION["quizCount"]) * 100, 1) ?>%</td>
                 </tr>
                 <tr>
                   <th>経過時間</th>
-                  <td><?= $_SESSION["endTime"] - $_SESSION["startTime"] ?>秒</td>
+                  <td class="fadeup delay-time-5"><?= $_SESSION["endTime"] - $_SESSION["startTime"] ?>秒</td>
                 </tr>
               </table>
               <fieldset class="incorrect-area">
@@ -149,12 +149,12 @@ if ($finished) {
             <p class="title"><?= "第 " . $count . " 問目" ?></p>
             <fieldset class="quiz-fieldset">
               <legend>問題</legend>
-              <p id="text-question"><?= h($question) ?></p>
+              <p id="text-question" class="fadein"><?= h($question) ?></p>
               <p id="text-answer"><?= h($answer) ?></p>
             </fieldset>
             <fieldset class="quiz-fieldset">
               <legend>選択肢</legend>
-              <div class="choices">
+              <div class="choices fadein">
                 <?php
                 for ($i = 1; $i <= count($choices); $i++) {
                   $choice = $choices[$i - 1];
@@ -163,7 +163,7 @@ if ($finished) {
                 ?>
               </div>
             </fieldset>
-            <p id="notification-area"><span id="answer-message" class="message"></span></p>
+            <p id="notification-area"><span id="answer-message" class="fadein"></span></p>
             <form action="" method="post">
               <input type="hidden" name="incorrect-question" value="">
               <input type="hidden" name="incorrect-answer" value="">

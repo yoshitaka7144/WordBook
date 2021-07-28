@@ -62,6 +62,10 @@ footer {
   color: blue;
 }
 
+.color-green {
+  color: green;
+}
+
 #logo a {
   line-height: 60px;
   padding: 0 20px;
@@ -91,12 +95,12 @@ footer {
 }
 
 #sp-nav {
+  display: none;
   z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  display: none;
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
 }
@@ -126,6 +130,10 @@ footer {
   font-size: 16px;
   color: white;
   cursor: pointer;
+}
+
+#sp-nav li i {
+  margin-right: 5px;
 }
 
 #hamburger {
@@ -198,6 +206,21 @@ footer {
 .message {
   font-size: 16px;
   margin-bottom: 5px;
+}
+
+.highlight-y {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, yellow));
+  background: linear-gradient(transparent 40%, yellow 40%);
+}
+
+.highlight-b {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #6cf));
+  background: linear-gradient(transparent 40%, #6cf 40%);
+}
+
+.highlight-g {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #6f6));
+  background: linear-gradient(transparent 40%, #6f6 40%);
 }
 
 .btn-wrapper {
@@ -555,10 +578,10 @@ footer {
 
 .choices .choice-area .choice-label {
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
   border: 1px solid #006dd9;
   border-radius: 20px;
-  width: 65%;
+  width: 75%;
   padding: 10px;
   cursor: pointer;
   text-align: center;
@@ -577,6 +600,11 @@ footer {
 #answer-message {
   border-radius: 10px;
   padding: 7px;
+  font-size: 22px;
+}
+
+#answer-message i {
+  margin-right: 5px;
 }
 
 #text-question {
@@ -591,6 +619,8 @@ footer {
 
 .correct {
   background-color: #9af3be;
+  -webkit-animation: poyoyon2 1s ease-in-out 1 forwards;
+          animation: poyoyon2 1s ease-in-out 1 forwards;
 }
 
 .incorrect {
@@ -629,6 +659,14 @@ footer {
   text-align: right;
 }
 
+.result .result-table tr:nth-child(3) td {
+  color: red;
+}
+
+.result .result-table tr:nth-child(4) td {
+  color: #00c546;
+}
+
 .result .incorrect-area {
   width: 45%;
   height: 290px;
@@ -644,6 +682,190 @@ footer {
   font-size: 16px;
   color: #0000ff;
   text-align: center;
+}
+
+.poyopoyo {
+  -webkit-animation: poyopoyo 1.5s ease-out infinite;
+          animation: poyopoyo 1.5s ease-out infinite;
+  opacity: 1;
+}
+
+.poyoyon {
+  -webkit-animation: poyoyon 1s ease-in-out 1 forwards;
+          animation: poyoyon 1s ease-in-out 1 forwards;
+}
+
+.fadein {
+  opacity: 0;
+  -webkit-animation: fadein 0.5s ease-in 1 forwards;
+          animation: fadein 0.5s ease-in 1 forwards;
+}
+
+.fadeup {
+  opacity: 0;
+  -webkit-animation: fadeup 0.4s ease-in 1 forwards;
+          animation: fadeup 0.4s ease-in 1 forwards;
+}
+
+.delay-time-1 {
+  -webkit-animation-delay: 0.0s;
+          animation-delay: 0.0s;
+}
+
+.delay-time-2 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+
+.delay-time-3 {
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+
+.delay-time-4 {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+
+.delay-time-5 {
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+}
+
+@-webkit-keyframes fadeup {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-30px);
+            transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-30px);
+            transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes poyoyon {
+  0% {
+    -webkit-transform: scale(1, 1) translate(0, 0);
+            transform: scale(1, 1) translate(0, 0);
+  }
+  15% {
+    -webkit-transform: scale(0.98, 0.9) translate(0, 5px);
+            transform: scale(0.98, 0.9) translate(0, 5px);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 1) translate(0, 8px);
+            transform: scale(1.02, 1) translate(0, 8px);
+  }
+  50% {
+    -webkit-transform: scale(0.98, 1.05) translate(0, -8px);
+            transform: scale(0.98, 1.05) translate(0, -8px);
+  }
+  70% {
+    -webkit-transform: scale(1, 0.9) translate(0, 5px);
+            transform: scale(1, 0.9) translate(0, 5px);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translate(0, 0);
+            transform: scale(1, 1) translate(0, 0);
+  }
+  0%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes poyoyon {
+  0% {
+    -webkit-transform: scale(1, 1) translate(0, 0);
+            transform: scale(1, 1) translate(0, 0);
+  }
+  15% {
+    -webkit-transform: scale(0.98, 0.9) translate(0, 5px);
+            transform: scale(0.98, 0.9) translate(0, 5px);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 1) translate(0, 8px);
+            transform: scale(1.02, 1) translate(0, 8px);
+  }
+  50% {
+    -webkit-transform: scale(0.98, 1.05) translate(0, -8px);
+            transform: scale(0.98, 1.05) translate(0, -8px);
+  }
+  70% {
+    -webkit-transform: scale(1, 0.9) translate(0, 5px);
+            transform: scale(1, 0.9) translate(0, 5px);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translate(0, 0);
+            transform: scale(1, 1) translate(0, 0);
+  }
+  0%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes poyopoyo {
+  0%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50%,
+  70% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+}
+
+@keyframes poyopoyo {
+  0%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50%,
+  70% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -725,7 +947,8 @@ footer {
     margin: 5px;
   }
   .choices .choice-area .choice-label {
-    font-size: 14px;
+    font-size: 18px;
+    width: 90%;
   }
   .result {
     -webkit-box-orient: vertical;
