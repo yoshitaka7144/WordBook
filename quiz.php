@@ -9,6 +9,7 @@ function h($str)
 $dbErrorMessage = "";
 $settingType = filter_input(INPUT_POST, "quiz-type");
 $settingCount = filter_input(INPUT_POST, "quiz-count");
+$settingAudio = filter_input(INPUT_POST, "quiz-audio");
 $currentCount = filter_input(INPUT_POST, "current-count");
 
 if (!empty($settingType) && !isset($_SESSION["quizData"])) {
@@ -56,6 +57,7 @@ if (!empty($settingType) && !isset($_SESSION["quizData"])) {
 
       $_SESSION["quizCount"] = (int)$settingCount;
       $_SESSION["quizType"] = $settingType;
+      $_SESSION["enabledAudio"] = $settingAudio === "有" ? true : false;
       $_SESSION["quizCurrentIndex"] = 0;
       $_SESSION["startTime"] = time();
     }
@@ -177,6 +179,14 @@ if ($finished) {
                 <?php endif ?>
               </div>
             </form>
+            <?php if ($_SESSION["enabledAudio"]) : ?>
+              <audio id="audio-correct" controls>
+                <source src="./audio/correct.mp3">
+              </audio>
+              <audio id="audio-incorrect" controls>
+                <source src="./audio/incorrect.mp3">
+              </audio>
+            <?php endif ?>
           <?php endif ?>
         <?php else : ?>
           <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>

@@ -46,8 +46,8 @@ footer {
   color: blue;
 }
 
-.color-green{
-  color:green;
+.color-green {
+  color: green;
 }
 
 #logo {
@@ -103,7 +103,7 @@ footer {
       cursor: pointer;
     }
 
-    i{
+    i {
       margin-right: 5px;
     }
   }
@@ -285,16 +285,17 @@ footer {
 
   th {
     text-align: center;
-    width: 45%;
+    width: 40%;
     background-color: #eee;
   }
 
   td {
     text-align: left;
-    width: 55%;
+    width: 60%;
   }
 
   .form-text {
+    font-size: 16px;
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -302,10 +303,54 @@ footer {
   }
 
   .form-select {
+    font-size: 16px;
     width: 75px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+
+  .form-checkbox {
+    display: none;
+
+    + label {
+      display: none;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      padding-left: 25px;
+      padding-right: 10px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        box-sizing: border-box;
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        left: 0;
+        top: 50%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+
+    &:checked + label::after {
+      content: "";
+      position: absolute;
+      display: block;
+      box-sizing: border-box;
+      width: 18px;
+      height: 9px;
+      margin-top: -9px;
+      top: 50%;
+      left: 3px;
+      transform: rotate(-45deg);
+      border-bottom: 3px solid;
+      border-left: 3px solid;
+      border-color: #585753;
+    }
   }
 }
 
@@ -534,7 +579,7 @@ footer {
   padding: 7px;
   font-size: 22px;
 
-  i{
+  i {
     margin-right: 5px;
   }
 }
@@ -611,6 +656,11 @@ footer {
   }
 }
 
+#audio-correct,
+#audio-incorrect {
+  display: none;
+}
+
 .poyopoyo {
   animation: poyopoyo 1.5s ease-out infinite;
   opacity: 1;
@@ -631,7 +681,7 @@ footer {
 }
 
 .delay-time-1 {
-  animation-delay: 0.0s;
+  animation-delay: 0s;
 }
 
 .delay-time-2 {
@@ -735,6 +785,10 @@ footer {
 
   .input-form {
     font-size: 14px;
+    .form-text,
+    .form-select {
+      font-size: 14px;
+    }
   }
 
   .confirm-table {

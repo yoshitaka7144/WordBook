@@ -338,16 +338,17 @@ footer {
 
 .input-form th {
   text-align: center;
-  width: 45%;
+  width: 40%;
   background-color: #eee;
 }
 
 .input-form td {
   text-align: left;
-  width: 55%;
+  width: 60%;
 }
 
 .input-form .form-text {
+  font-size: 16px;
   width: 100%;
   padding: 10px;
   border-radius: 5px;
@@ -355,10 +356,57 @@ footer {
 }
 
 .input-form .form-select {
+  font-size: 16px;
   width: 75px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.input-form .form-checkbox {
+  display: none;
+}
+
+.input-form .form-checkbox + label {
+  display: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  padding-right: 10px;
+}
+
+.input-form .form-checkbox + label::before {
+  content: "";
+  position: absolute;
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  left: 0;
+  top: 50%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-form .form-checkbox:checked + label::after {
+  content: "";
+  position: absolute;
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 18px;
+  height: 9px;
+  margin-top: -9px;
+  top: 50%;
+  left: 3px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  border-color: #585753;
 }
 
 .edit-confirm {
@@ -684,6 +732,11 @@ footer {
   text-align: center;
 }
 
+#audio-correct,
+#audio-incorrect {
+  display: none;
+}
+
 .poyopoyo {
   -webkit-animation: poyopoyo 1.5s ease-out infinite;
           animation: poyopoyo 1.5s ease-out infinite;
@@ -708,8 +761,8 @@ footer {
 }
 
 .delay-time-1 {
-  -webkit-animation-delay: 0.0s;
-          animation-delay: 0.0s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 
 .delay-time-2 {
@@ -890,6 +943,10 @@ footer {
     width: 100%;
   }
   .input-form {
+    font-size: 14px;
+  }
+  .input-form .form-text,
+  .input-form .form-select {
     font-size: 14px;
   }
   .confirm-table {

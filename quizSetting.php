@@ -95,6 +95,13 @@ try {
                     </select>
                   </td>
                 </tr>
+                <tr>
+                  <th>音声の有無</th>
+                  <td>
+                    <input type="checkbox" class="form-checkbox" name="quiz-audio" id="quiz-audio" value="有">
+                    <label for="quiz-audio" class="message">解答時に音声再生</label>
+                  </td>
+                </tr>
               </table>
               <div class="btn-wrapper">
                 <input class="btn btn-blue btn-normal poyopoyo" type="submit" value="スタート">
