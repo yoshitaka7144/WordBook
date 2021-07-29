@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * 共通ヘッダー
+ * 
+ * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
+ */
+?>
 <!DOCTYPE html>
 <html lang="ja">
 

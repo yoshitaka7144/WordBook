@@ -2,12 +2,15 @@
 $(function () {
   // 解答するボタン押下時の処理
   $("#btn-answer").on("click", function () {
-    // 正解
+    // 正解テキスト
     var answer = $("#text-answer").text();
+
+    // 選択肢の数
+    var choicesCount = document.getElementById("choices").childElementCount;
 
     // 選択されている選択肢の内容取得
     var choice = "";
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= choicesCount; i++) {
       if ($("#choice-" + i).prop("checked")) {
         choice = $("#choice-" + i).val();
         break;
@@ -25,10 +28,10 @@ $(function () {
         // 正解が選択されている場合
         $("#answer-message").html("<i class='fas fa-check-circle'></i>正解!!!");
         $("#answer-message").addClass("color-green");
-        
+
         // 正解音声再生
         var audio = document.getElementById("audio-correct");
-        if(audio != null) audio.play();
+        if (audio != null) audio.play();
       } else {
         // 不正解が選択されている場合
         $("#answer-message").html("<i class='fas fa-times-circle'></i>不正解");
@@ -38,11 +41,11 @@ $(function () {
 
         // 不正解音声再生
         var audio = document.getElementById("audio-incorrect");
-        if(audio != null) audio.play();
+        if (audio != null) audio.play();
       }
 
       // 選択肢に背景色設定
-      for (var i = 1; i <= 4; i++) {
+      for (var i = 1; i <= choicesCount; i++) {
         if ($("#choice-" + i).val() === answer) {
           $("#choice-" + i).parent().addClass("correct");
           $("#choice-" + i).parent().addClass("poyoyon");

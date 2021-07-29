@@ -1,17 +1,18 @@
 <?php
+
+/**
+ * クイズ準備画面
+ * 
+ * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
+ */
+
 session_start();
 $_SESSION = array();
 session_destroy();
 require_once("config.php");
+require_once("util.php");
 
-function h($str)
-{
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
-}
-
-$selectCountStart = 5;
-$selectCountEnd = 20;
-$defaultSelectedNumber = 10;
+// 問題種類
 $type = filter_input(INPUT_GET, "type");
 
 $dbErrorMessage = "";
@@ -25,6 +26,7 @@ try {
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]
   );
+  // 問題種類を全て取得
   $stmt = $pdo->prepare("select type from words group by type");
   $stmt->execute();
   $rows = $stmt->fetchAll();
@@ -84,8 +86,8 @@ try {
                   <td>
                     <select class="form-select" name="quiz-count" id="quiz-count">
                       <?php
-                      for ($i = $selectCountStart; $i <= $selectCountEnd; $i++) {
-                        if ($i === $defaultSelectedNumber) {
+                      for ($i = SELECT_COUNT_MIN; $i <= SELECT_COUNT_MAX; $i++) {
+                        if ($i === DEFAULT_SELECTED_NUMBER) {
                           echo "<option value='" . $i . "' selected>" . $i . "</option>";
                         } else {
                           echo "<option value='" . $i . "'>" . $i . "</option>";

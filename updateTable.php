@@ -1,15 +1,21 @@
 <?php
+
+/**
+ * 一覧テーブル更新用データを返す
+ * jsでajaxで呼び出される
+ * 
+ * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
+ */
+
 header("Content-Type: application/json; charset=UTF-8");
 require_once("config.php");
-function h($str)
-{
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
-}
+require_once("util.php");
 
-$type = filter_input(INPUT_POST,"type");
-$page = filter_input(INPUT_POST,"page");
-$offset = ($page-1) * MAX_TABLE_ROW_COUNT;
+$type = filter_input(INPUT_POST, "type");
+$page = filter_input(INPUT_POST, "page");
+$offset = ($page - 1) * MAX_TABLE_ROW_COUNT;
 
+$result = [];
 try {
   $pdo = new PDO(
     "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
@@ -20,9 +26,12 @@ try {
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]
   );
-  if($type === SELECT_TYPE_ALL){
+
+  // 対象データ取得
+  if ($type === SELECT_TYPE_ALL) {
+    // 表示対象が全データの場合
     $stmt = $pdo->prepare("select id, type, question, answer from words order by id limit :offset, :limitCount");
-  }else{
+  } else {
     $stmt = $pdo->prepare("select id, type, question, answer from words where type = :type order by id limit :offset, :limitCount");
     $stmt->bindValue(":type", $type);
   }
@@ -31,26 +40,31 @@ try {
   $stmt->execute();
   $rows = $stmt->fetchAll();
 
-  if($type === SELECT_TYPE_ALL){
+  // ページ数取得
+  if ($type === SELECT_TYPE_ALL) {
     $stmt = $pdo->prepare("select count(*) from words");
-  }else{
+  } else {
     $stmt = $pdo->prepare("select count(*) from words where type = :type");
     $stmt->bindValue(":type", $type);
   }
   $stmt->execute();
   $rowCount = $stmt->fetchColumn();
-  $maxPage = ceil($rowCount / MAX_TABLE_ROW_COUNT);
+  $maxPage = (int)$rowCount === 0 ? 1 : ceil($rowCount / MAX_TABLE_ROW_COUNT);
 } catch (PDOException $e) {
-  
+  $result["error"] = $e->getMessage();
+  echo json_encode($result);
+  exit;
 }
 
-foreach($rows as $key => $value){
+// 一覧表示用データ作成
+foreach ($rows as $key => $value) {
+  // jsからajaxで呼び出される為ここでエスケープ処理
   $rows[$key]["id"] = h($rows[$key]["id"]);
   $rows[$key]["type"] = h($rows[$key]["type"]);
   $rows[$key]["question"] = h($rows[$key]["question"]);
   $rows[$key]["answer"] = h($rows[$key]["answer"]);
 }
-
 $result = ["rows" => $rows, "currentPage" => $page, "maxPage" => $maxPage];
 
+// 結果を返す
 echo json_encode($result);

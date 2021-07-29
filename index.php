@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * トップページ
+ * 
+ * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
+ */
+
 session_start();
 $_SESSION = array();
 session_destroy();

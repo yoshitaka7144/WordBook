@@ -1,3 +1,9 @@
+@charset "UTF-8";
+/*----------------------------------------------
+
+共通
+
+----------------------------------------------*/
 * {
   margin: 0;
   padding: 0;
@@ -28,30 +34,49 @@ main {
   background-color: rgba(233, 225, 225, 0.726);
 }
 
-header {
-  height: 60px;
+.container {
+  margin-top: 60px;
   width: 100%;
-  background-color: #22384e;
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  top: 0;
+  height: 100%;
 }
 
-footer {
+.main-contents {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 60px;
-  width: 100%;
-  background-color: #999898;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.message {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.highlight-y {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, yellow));
+  background: linear-gradient(transparent 40%, yellow 40%);
+}
+
+.highlight-b {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #6cf));
+  background: linear-gradient(transparent 40%, #6cf 40%);
+}
+
+.highlight-g {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #6f6));
+  background: linear-gradient(transparent 40%, #6f6 40%);
 }
 
 .color-red {
@@ -64,6 +89,22 @@ footer {
 
 .color-green {
   color: green;
+}
+
+/*----------------------------------------------
+
+ヘッダー関連
+
+----------------------------------------------*/
+header {
+  height: 60px;
+  width: 100%;
+  background-color: #22384e;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 0;
 }
 
 #logo a {
@@ -178,51 +219,31 @@ footer {
   background-color: #fff;
 }
 
-.container {
-  margin-top: 60px;
-  width: 100%;
-  height: 100%;
-}
+/*----------------------------------------------
 
-.main-contents {
+フッター関連
+
+----------------------------------------------*/
+footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: #999898;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: center;
-}
+/*----------------------------------------------
 
-.message {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
+ボタン関連
 
-.highlight-y {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, yellow));
-  background: linear-gradient(transparent 40%, yellow 40%);
-}
-
-.highlight-b {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #6cf));
-  background: linear-gradient(transparent 40%, #6cf 40%);
-}
-
-.highlight-g {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #6f6));
-  background: linear-gradient(transparent 40%, #6f6 40%);
-}
-
+----------------------------------------------*/
 .btn-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -297,6 +318,11 @@ footer {
           box-shadow: 2px 2px #504e4e;
 }
 
+/*----------------------------------------------
+
+トップページ
+
+----------------------------------------------*/
 .menu {
   width: 50%;
   background-color: white;
@@ -306,6 +332,11 @@ footer {
   text-align: center;
 }
 
+/*----------------------------------------------
+
+編集ページ
+
+----------------------------------------------*/
 .edit-input {
   width: 40%;
   height: 100%;
@@ -550,6 +581,11 @@ footer {
   text-align: center;
 }
 
+/*----------------------------------------------
+
+クイズ画面
+
+----------------------------------------------*/
 .quiz {
   width: 70%;
   background-color: white;
@@ -593,7 +629,7 @@ footer {
   text-align: left;
 }
 
-.choices {
+#choices {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -607,7 +643,7 @@ footer {
           justify-content: center;
 }
 
-.choices .choice-area {
+#choices .choice-area {
   width: 40%;
   padding: 10px;
   margin: 10px;
@@ -615,16 +651,16 @@ footer {
   border-radius: 10px;
 }
 
-.choices .choice-area input[type="radio"] {
+#choices .choice-area input[type="radio"] {
   display: none;
 }
 
-.choices .choice-area input[type="radio"]:checked + .choice-label {
+#choices .choice-area input[type="radio"]:checked + .choice-label {
   background: #31a9ee;
   color: #ffffff;
 }
 
-.choices .choice-area .choice-label {
+#choices .choice-area .choice-label {
   display: inline-block;
   font-size: 20px;
   border: 1px solid #006dd9;
@@ -635,7 +671,7 @@ footer {
   text-align: center;
 }
 
-.choices .choice-area .choice-label:hover {
+#choices .choice-area .choice-label:hover {
   background-color: #e2edf9;
 }
 
@@ -737,6 +773,11 @@ footer {
   display: none;
 }
 
+/*----------------------------------------------
+
+アニメーション関連
+
+----------------------------------------------*/
 .poyopoyo {
   -webkit-animation: poyopoyo 1.5s ease-out infinite;
           animation: poyopoyo 1.5s ease-out infinite;
@@ -921,6 +962,11 @@ footer {
   }
 }
 
+/*----------------------------------------------
+
+レスポンシブ
+
+----------------------------------------------*/
 @media screen and (max-width: 640px) {
   #pc-nav {
     display: none;
@@ -991,7 +1037,7 @@ footer {
   .quiz-fieldset .description-table {
     font-size: 14px;
   }
-  .choices {
+  #choices {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
     -webkit-box-orient: vertical;
@@ -999,11 +1045,11 @@ footer {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .choices .choice-area {
+  #choices .choice-area {
     width: 100%;
     margin: 5px;
   }
-  .choices .choice-area .choice-label {
+  #choices .choice-area .choice-label {
     font-size: 18px;
     width: 90%;
   }

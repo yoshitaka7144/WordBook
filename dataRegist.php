@@ -1,25 +1,39 @@
 <?php
+
+/**
+ * 問題データ登録処理
+ * 
+ * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
+ */
+
 session_start();
 require_once("config.php");
 require_once("validation.php");
 
-$inputId = filter_input(INPUT_POST, "inputId");
-$inputType = filter_input(INPUT_POST, "inputType");
-$inputQuestion = filter_input(INPUT_POST, "inputQuestion");
-$inputAnswer = filter_input(INPUT_POST, "inputAnswer");
-$registType = filter_input(INPUT_POST, "registType");
-$errors = validation($_POST, $registType);
-$resultMessage = "";
-$errored = false;
-
+// 二重処理防止用リダイレクト
 if (isset($_SESSION["dbConnected"])) {
     header("Location: edit.php");
     exit;
 }
 
-if (!empty($errors)) {
+// 入力内容
+$inputId = filter_input(INPUT_POST, "inputId");
+$inputType = filter_input(INPUT_POST, "inputType");
+$inputQuestion = filter_input(INPUT_POST, "inputQuestion");
+$inputAnswer = filter_input(INPUT_POST, "inputAnswer");
+
+// DB処理種類
+$registType = filter_input(INPUT_POST, "registType");
+
+// 入力内容チェック処理
+$inputErrors = validation($_POST, $registType);
+
+$resultMessage = "";
+$dbErrored = false;
+if (!empty($inputErrors)) {
     $resultMessage = "不正な入力内容があります。やり直してください。";
 } else {
+    // データベース処理
     try {
         $pdo = new PDO(
             "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
@@ -30,7 +44,9 @@ if (!empty($errors)) {
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]
         );
+
         if ($registType === REGIST_TYPE_CREATE) {
+            // 登録処理
             $stmt = $pdo->prepare("insert into words (type, question, answer) values (:type, :question, :answer)");
             $stmt->bindValue(":type", $inputType);
             $stmt->bindValue(":question", $inputQuestion);
@@ -38,6 +54,7 @@ if (!empty($errors)) {
             $stmt->execute();
             $resultMessage = $registType . "処理が完了しました。";
         } elseif ($registType === REGIST_TYPE_UPDATE) {
+            // 更新処理
             $stmt = $pdo->prepare("update words set type = :type, question = :question, answer = :answer where id = :id");
             $stmt->bindValue(":type", $inputType);
             $stmt->bindValue(":question", $inputQuestion);
@@ -51,6 +68,7 @@ if (!empty($errors)) {
                 $resultMessage = $registType . "処理が完了しました。";
             }
         } elseif ($registType === REGIST_TYPE_DELETE) {
+            // 削除処理
             $stmt = $pdo->prepare("delete from words where id = :id");
             $stmt->bindValue(":id", (int)$inputId, pdo::PARAM_INT);
             $stmt->execute();
@@ -63,10 +81,12 @@ if (!empty($errors)) {
         } else {
             $resultMessage = "不正な処理が行われました。やり直してください。";
         }
+
+        // 二重処理防止用にセッションへ代入
         $_SESSION["dbConnected"] = true;
     } catch (PDOException $e) {
         $resultMessage = $e->getMessage();
-        $errored = true;
+        $dbErrored = true;
     }
 }
 
@@ -76,10 +96,10 @@ if (!empty($errors)) {
     <div class="container">
         <div class="main-contents">
             <div class="edit-confirm">
-                <?php if ($errored) : ?>
+                <?php if ($dbErrored) : ?>
                     <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
                 <?php endif ?>
-                <p class="message"><?php echo $resultMessage ?></p>
+                <p class="message"><?= $resultMessage ?></p>
                 <div class="btn-wrapper">
                     <a href="edit.php" class="btn btn-green btn-normal">管理画面</a>
                     <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>

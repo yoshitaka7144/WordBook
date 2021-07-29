@@ -1,20 +1,25 @@
 <?php
+
+/**
+ * 編集画面
+ * 
+ * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
+ */
+
 session_start();
 $_SESSION = array();
 session_destroy();
 require_once("config.php");
 require_once("validation.php");
+require_once("util.php");
 
-function h($str)
-{
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
-}
-
+// 入力内容
 $inputId = filter_input(INPUT_POST, "inputId");
 $inputType = filter_input(INPUT_POST, "inputType");
 $inputQuestion = filter_input(INPUT_POST, "inputQuestion");
 $inputAnswer = filter_input(INPUT_POST, "inputAnswer");
 
+// DB処理種類
 $registType = "";
 if (isset($_POST["create"])) {
   $registType = REGIST_TYPE_CREATE;
@@ -24,18 +29,23 @@ if (isset($_POST["create"])) {
   $registType = REGIST_TYPE_DELETE;
 }
 
+// 編集ページ種類
 $pageType = PAGE_TYPE_DEFAULT;
 if (!empty($registType)) {
+  // 入力内容チェック
   $errors = validation($_POST, $registType);
   if (empty($errors)) {
+    // 確認画面表示処理へ
     $pageType = PAGE_TYPE_CONFIRM;
   } else {
+    // エラー表示処理へ
     $pageType = PAGE_TYPE_ERROR;
   }
 }
 
 $dbErrorMessage = "";
 if ($pageType !== PAGE_TYPE_CONFIRM) {
+  // データ一覧取得
   try {
     $pdo = new PDO(
       "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
@@ -51,15 +61,17 @@ if ($pageType !== PAGE_TYPE_CONFIRM) {
     $stmt->execute();
     $rows = $stmt->fetchAll();
 
+    // ページ数取得
     $stmt = $pdo->prepare("select count(*) from words");
     $stmt->execute();
     $rowCount = $stmt->fetchColumn();
-    $maxPage = ceil($rowCount / MAX_TABLE_ROW_COUNT);
+    $maxPage = (int)$rowCount === 0 ? 1 : ceil($rowCount / MAX_TABLE_ROW_COUNT);
   } catch (PDOException $e) {
     $dbErrorMessage = $e->getMessage();
   }
 }
 
+// 確認画面用ボタン色
 $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "btn-green", REGIST_TYPE_DELETE => "btn-red"];
 
 ?>
@@ -94,17 +106,17 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
           <div class="btn-wrapper">
             <form action="" method="post">
               <input class="btn btn-gray btn-normal" type="submit" value="戻る">
-              <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
-              <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
-              <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
-              <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
+              <input type="hidden" name="inputId" value="<?= h($inputId) ?>">
+              <input type="hidden" name="inputType" value="<?= h($inputType) ?>">
+              <input type="hidden" name="inputQuestion" value="<?= h($inputQuestion) ?>">
+              <input type="hidden" name="inputAnswer" value="<?= h($inputAnswer) ?>">
             </form>
             <form action="dataRegist.php" method="post">
-              <input class="btn btn-normal <?= $btnColor[$registType] ?>" type="submit" name="registType" value="<?php echo $registType ?>">
-              <input type="hidden" name="inputId" value="<?php echo h($inputId) ?>">
-              <input type="hidden" name="inputType" value="<?php echo h($inputType) ?>">
-              <input type="hidden" name="inputQuestion" value="<?php echo h($inputQuestion) ?>">
-              <input type="hidden" name="inputAnswer" value="<?php echo h($inputAnswer) ?>">
+              <input class="btn btn-normal <?= $btnColor[$registType] ?>" type="submit" name="registType" value="<?= $registType ?>">
+              <input type="hidden" name="inputId" value="<?= h($inputId) ?>">
+              <input type="hidden" name="inputType" value="<?= h($inputType) ?>">
+              <input type="hidden" name="inputQuestion" value="<?= h($inputQuestion) ?>">
+              <input type="hidden" name="inputAnswer" value="<?= h($inputAnswer) ?>">
             </form>
           </div>
         </div>
@@ -117,7 +129,7 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
           <?php if ($pageType === PAGE_TYPE_ERROR) : ?>
             <div id="error-area">
               <?php foreach ($errors as $error) : ?>
-                <p class="message color-red"><?php echo $error ?></p>
+                <p class="message color-red"><?= $error ?></p>
               <?php endforeach ?>
             </div>
           <?php endif ?>
@@ -125,28 +137,24 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
             <table class="input-form">
               <tr>
                 <th>ID</th>
-                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?php echo h($inputId) ?>"></td>
+                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?= h($inputId) ?>"></td>
               </tr>
               <tr>
                 <th>種類</th>
                 <td>
                   <select class="form-select" name="inputType" id="inputType">
-                    <option value="和訳" <?php if ($inputType === "和訳") {
-                                          echo "selected";
-                                        } ?>>和訳</option>
-                    <option value="英訳" <?php if ($inputType === "英訳") {
-                                          echo "selected";
-                                        } ?>>英訳</option>
+                    <option value="和訳" <?= $inputType === "和訳" ? "selected" : "" ?>>和訳</option>
+                    <option value="英訳" <?= $inputType === "英訳" ? "selected" : "" ?>>英訳</option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <th>問題</th>
-                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?php echo h($inputQuestion) ?>"></td>
+                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?= h($inputQuestion) ?>"></td>
               </tr>
               <tr>
                 <th>答え</th>
-                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?php echo h($inputAnswer) ?>"></td>
+                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?= h($inputAnswer) ?>"></td>
               </tr>
             </table>
             <div class="btn-wrapper">
@@ -183,20 +191,20 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
               </thead>
               <tbody>
                 <?php foreach ($rows as $row) : ?>
-                  <?php echo "<tr class='data-row'>" ?>
-                  <?php echo "<td>" . h($row["id"]) . "</td>" ?>
-                  <?php echo "<td>" . h($row["type"]) . "</td>" ?>
-                  <?php echo "<td>" . h($row["question"]) . "</td>" ?>
-                  <?php echo "<td>" . h($row["answer"]) . "</td>" ?>
-                  <?php echo "</tr>" ?>
+                  <?= "<tr class='data-row'>" ?>
+                  <?= "<td>" . h($row["id"]) . "</td>" ?>
+                  <?= "<td>" . h($row["type"]) . "</td>" ?>
+                  <?= "<td>" . h($row["question"]) . "</td>" ?>
+                  <?= "<td>" . h($row["answer"]) . "</td>" ?>
+                  <?= "</tr>" ?>
                 <?php endforeach ?>
               </tbody>
             </table>
             <div class="pagination">
-              <p class="message"><span id="current-page">1</span> / <span id="max-page"><?php echo $maxPage ?></span> ページ</p>
+              <p class="message"><span id="current-page">1</span> / <span id="max-page"><?= $maxPage ?></span> ページ</p>
               <div class="btn-wrapper">
                 <input class="btn btn-blue btn-normal" id="btn-prev" type="button" value="前へ" disabled>
-                <input class="btn btn-blue btn-normal" id="btn-next" type="button" value="次へ" <?php echo (int)$maxPage === 1 ? "disabled" : "" ?>>
+                <input class="btn btn-blue btn-normal" id="btn-next" type="button" value="次へ" <?= (int)$maxPage === 1 ? "disabled" : "" ?>>
               </div>
             </div>
           <?php endif ?>

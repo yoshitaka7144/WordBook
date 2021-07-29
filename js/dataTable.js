@@ -58,41 +58,44 @@ $(function () {
       },
       dataType: "json"
     }).done(function (data) {
-      var tbody = $("#data-table > tbody");
-      var currentPage = $("#current-page");
-      var maxPage = $("#max-page");
-
-      // 内容クリア
-      tbody.empty();
-
-      // テーブルへ取得したデータを追加
-      data["rows"].forEach(row => {
-        tbody.append("<tr class='data-row'><td>" + row["id"] + "</td><td>" + row["type"] + "</td><td>" + row["question"] + "</td><td>" + row["answer"] + "</td></tr>");
-      });
-
-      // ページ数表示更新
-      currentPage.text(data["currentPage"]);
-      maxPage.text(data["maxPage"]);
-
-      // 表示ページ数に対応して前、次へボタンの表示設定
-      var currentPageNum = parseInt(currentPage.text());
-      var maxPageNum = parseInt(maxPage.text());
-      if (currentPageNum === 1) {
-        $("#btn-prev").prop('disabled', true);
-        if (maxPageNum === 1) {
-          $("#btn-next").prop('disabled', true);
-        } else {
-          $("#btn-next").prop('disabled', false);
-        }
+      if (data["error"] != null) {
+        alert(data["error"]);
       } else {
-        $("#btn-prev").prop('disabled', false);
-        if (maxPageNum === currentPageNum) {
-          $("#btn-next").prop('disabled', true);
+        var tbody = $("#data-table > tbody");
+        var currentPage = $("#current-page");
+        var maxPage = $("#max-page");
+
+        // 内容クリア
+        tbody.empty();
+
+        // テーブルへ取得したデータを追加
+        data["rows"].forEach(row => {
+          tbody.append("<tr class='data-row'><td>" + row["id"] + "</td><td>" + row["type"] + "</td><td>" + row["question"] + "</td><td>" + row["answer"] + "</td></tr>");
+        });
+
+        // ページ数表示更新
+        currentPage.text(data["currentPage"]);
+        maxPage.text(data["maxPage"]);
+
+        // 表示ページ数に対応して前、次へボタンの表示設定
+        var currentPageNum = parseInt(currentPage.text());
+        var maxPageNum = parseInt(maxPage.text());
+        if (currentPageNum === 1) {
+          $("#btn-prev").prop('disabled', true);
+          if (maxPageNum === 1) {
+            $("#btn-next").prop('disabled', true);
+          } else {
+            $("#btn-next").prop('disabled', false);
+          }
         } else {
-          $("#btn-next").prop('disabled', false);
+          $("#btn-prev").prop('disabled', false);
+          if (maxPageNum === currentPageNum) {
+            $("#btn-next").prop('disabled', true);
+          } else {
+            $("#btn-next").prop('disabled', false);
+          }
         }
       }
-
     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
       alert(errorThrown);
     });

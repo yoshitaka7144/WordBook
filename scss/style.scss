@@ -1,3 +1,8 @@
+/*----------------------------------------------
+
+共通
+
+----------------------------------------------*/
 * {
   margin: 0;
   padding: 0;
@@ -20,22 +25,42 @@ main {
   background-color: rgba(233, 225, 225, 0.726);
 }
 
-header {
-  height: 60px;
+.container {
+  margin-top: 60px;
   width: 100%;
-  background-color: rgba(34, 56, 78, 1);
-  position: fixed;
-  display: flex;
-  top: 0;
+  height: 100%;
 }
 
-footer {
+.main-contents {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 60px;
-  width: 100%;
-  background-color: rgb(153, 152, 152);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.message {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.highlight-y {
+  background: linear-gradient(transparent 40%, yellow 40%);
+}
+
+.highlight-b {
+  background: linear-gradient(transparent 40%, #6cf 40%);
+}
+
+.highlight-g {
+  background: linear-gradient(transparent 40%, #6f6 40%);
 }
 
 .color-red {
@@ -48,6 +73,20 @@ footer {
 
 .color-green {
   color: green;
+}
+
+/*----------------------------------------------
+
+ヘッダー関連
+
+----------------------------------------------*/
+header {
+  height: 60px;
+  width: 100%;
+  background-color: rgba(34, 56, 78, 1);
+  position: fixed;
+  display: flex;
+  top: 0;
 }
 
 #logo {
@@ -150,44 +189,25 @@ footer {
   background-color: #fff;
 }
 
-.container {
-  margin-top: 60px;
-  width: 100%;
-  height: 100%;
-}
+/*----------------------------------------------
 
-.main-contents {
+フッター関連
+
+----------------------------------------------*/
+footer {
   display: flex;
   justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: rgb(153, 152, 152);
 }
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: center;
-}
+/*----------------------------------------------
 
-.message {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
+ボタン関連
 
-.highlight-y {
-  background: linear-gradient(transparent 40%, yellow 40%);
-}
-
-.highlight-b {
-  background: linear-gradient(transparent 40%, #6cf 40%);
-}
-
-.highlight-g {
-  background: linear-gradient(transparent 40%, #6f6 40%);
-}
-
+----------------------------------------------*/
 .btn-wrapper {
   display: flex;
   align-items: center;
@@ -247,6 +267,11 @@ footer {
   box-shadow: 2px 2px #504e4e;
 }
 
+/*----------------------------------------------
+
+トップページ
+
+----------------------------------------------*/
 .menu {
   width: 50%;
   background-color: white;
@@ -256,6 +281,11 @@ footer {
   text-align: center;
 }
 
+/*----------------------------------------------
+
+編集ページ
+
+----------------------------------------------*/
 .edit-input {
   width: 40%;
   height: 100%;
@@ -486,6 +516,11 @@ footer {
   text-align: center;
 }
 
+/*----------------------------------------------
+
+クイズ画面
+
+----------------------------------------------*/
 .quiz {
   width: 70%;
   background-color: white;
@@ -529,7 +564,7 @@ footer {
   }
 }
 
-.choices {
+#choices {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -661,6 +696,11 @@ footer {
   display: none;
 }
 
+/*----------------------------------------------
+
+アニメーション関連
+
+----------------------------------------------*/
 .poyopoyo {
   animation: poyopoyo 1.5s ease-out infinite;
   opacity: 1;
@@ -758,6 +798,11 @@ footer {
   }
 }
 
+/*----------------------------------------------
+
+レスポンシブ
+
+----------------------------------------------*/
 @media screen and (max-width: 640px) {
   #pc-nav {
     display: none;
@@ -841,7 +886,7 @@ footer {
     }
   }
 
-  .choices {
+  #choices {
     flex-wrap: nowrap;
     flex-direction: column;
 
