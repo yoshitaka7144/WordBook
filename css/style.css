@@ -1003,10 +1003,6 @@ footer {
   .message {
     font-size: 14px;
   }
-  .btn-wrapper {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
   .btn {
     font-size: 16px;
   }

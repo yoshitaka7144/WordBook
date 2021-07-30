@@ -101,7 +101,7 @@ if (!empty($inputErrors)) {
                 <?php endif ?>
                 <p class="message"><?= $resultMessage ?></p>
                 <div class="btn-wrapper">
-                    <a href="edit.php" class="btn btn-green btn-normal">管理画面</a>
+                    <a href="edit.php" class="btn btn-green btn-normal">問題編集</a>
                     <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>
                 </div>
             </div>

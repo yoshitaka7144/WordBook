@@ -30,8 +30,8 @@
         <nav id="pc-nav">
             <ul>
                 <li><a href="edit.php">問題編集</a></li>
-                <li><a href="quizSetting.php?type=和訳">和訳</a></li>
-                <li><a href="quizSetting.php?type=英訳">英訳</a></li>
+                <li><a href="quizSetting.php?type=和訳">和訳クイズ</a></li>
+                <li><a href="quizSetting.php?type=英訳">英訳クイズ</a></li>
             </ul>
         </nav>
         <div id="hamburger">

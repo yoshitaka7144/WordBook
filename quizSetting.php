@@ -47,8 +47,8 @@ try {
           <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
           <p class="message"><?= $dbErrorMessage ?></p>
           <div class="btn-wrapper">
-            <a href="edit.php" class="btn btn-green btn-normal">管理画面へ</a>
-            <a href="index.php" class="btn btn-blue btn-normal">トップ画面へ</a>
+            <a href="edit.php" class="btn btn-green btn-normal">問題編集</a>
+            <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>
           </div>
         <?php else : ?>
           <p class="title">問題準備</p>

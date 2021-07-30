@@ -17,7 +17,7 @@ session_destroy();
             <div class="menu">
                 <p class="title">編集メニュー</p>
                 <p class="message">問題の追加や修正を行います</p>
-                <a href="edit.php" class="btn btn-normal btn-green">管理画面</a>
+                <a href="edit.php" class="btn btn-normal btn-green">問題編集</a>
             </div>
             <div class="menu">
                 <p class="title">クイズメニュー</p>
