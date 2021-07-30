@@ -30,6 +30,9 @@ try {
   $stmt = $pdo->prepare("select type from words group by type");
   $stmt->execute();
   $rows = $stmt->fetchAll();
+  if (count($rows) === 0) {
+    $dbErrorMessage = "問題データが登録されていません。問題を追加登録してください。";
+  }
 } catch (PDOException $e) {
   $dbErrorMessage = $e->getMessage();
 }
@@ -43,6 +46,10 @@ try {
         <?php if (!empty($dbErrorMessage)) : ?>
           <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
           <p class="message"><?= $dbErrorMessage ?></p>
+          <div class="btn-wrapper">
+            <a href="edit.php" class="btn btn-green btn-normal">管理画面へ</a>
+            <a href="index.php" class="btn btn-blue btn-normal">トップ画面へ</a>
+          </div>
         <?php else : ?>
           <p class="title">問題準備</p>
           <fieldset class="quiz-fieldset">

@@ -55,7 +55,7 @@ main {
 .title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -595,7 +595,7 @@ footer {
 }
 
 .quiz-fieldset {
-  margin: 10px 0;
+  margin-bottom: 10px;
   padding: 10px;
   border: solid 1px #0018ff33;
   border-radius: 6px;
@@ -645,7 +645,7 @@ footer {
 
 #choices .choice-area {
   width: 40%;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   text-align: center;
   border-radius: 10px;
@@ -662,7 +662,7 @@ footer {
 
 #choices .choice-area .choice-label {
   display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
   border: 1px solid #006dd9;
   border-radius: 20px;
   width: 75%;
@@ -684,7 +684,7 @@ footer {
 #answer-message {
   border-radius: 10px;
   padding: 7px;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 #answer-message i {
@@ -692,7 +692,7 @@ footer {
 }
 
 #text-question {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
 }
@@ -979,14 +979,13 @@ footer {
         flex-wrap: wrap;
     padding: 3px;
   }
-  .menu {
-    width: 100%;
-  }
+  .menu,
   .edit-input,
   .edit-table,
   .edit-confirm,
   .quiz {
     width: 100%;
+    padding: 10px;
   }
   .input-form {
     font-size: 14px;
@@ -1050,8 +1049,11 @@ footer {
     margin: 5px;
   }
   #choices .choice-area .choice-label {
-    font-size: 18px;
+    font-size: 16px;
     width: 90%;
+  }
+  #text-question {
+    font-size: 22px;
   }
   .result {
     -webkit-box-orient: vertical;
