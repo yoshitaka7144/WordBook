@@ -58,6 +58,11 @@ https://mikanbako.sakura.ne.jp/Wordbook/
 設定されたクイズが出題されます。選択肢を1つ選んで解答していきます。最後に結果画面が表示されます。  
 ![quiz](https://user-images.githubusercontent.com/18690548/127680818-e8f1ca7d-4d7c-496b-963b-97e8a9e0b508.gif)
 
+# テーブル定義書
+[テーブル定義書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1kAnCUVVjwLSICFZMSjreRandVdp8pJWhO918HXTGdZw/edit?usp=sharing)
+
+# テスト
+
 # リンク
 * [Github](https://github.com/yoshitaka7144)
 * [ポートフォリオ](https://mikanbako.sakura.ne.jp/portfolio/)

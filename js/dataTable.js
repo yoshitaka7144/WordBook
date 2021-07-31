@@ -2,7 +2,7 @@
 $(function () {
 
   // データ行クリック
-  $(document).on("click", ".data-row", function () {
+  $("#data-table").on("click", ".data-row", function () {
     // 各データ取得
     var id = $(this).children("td")[0].innerText;
     var type = $(this).children("td")[1].innerText;
