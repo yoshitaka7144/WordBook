@@ -5,12 +5,11 @@
  * 
  * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
  */
-
-session_start();
-$_SESSION = array();
-session_destroy();
 require_once("config.php");
 require_once("util.php");
+
+session_start();
+unsetSession();
 
 // 問題種類
 $type = filter_input(INPUT_GET, "type");

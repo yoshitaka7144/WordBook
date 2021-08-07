@@ -10,22 +10,18 @@
  * データベース：ホスト名
  */
 define("DB_HOST", "localhost");
-//define("DB_HOST", "mysql57.mikanbako.sakura.ne.jp");
 /**
  * データベース：データベース名
  */
 define("DB_NAME", "test");
-//define("DB_NAME", "mikanbako_wordbook");
 /**
  * データベース：ユーザー名
  */
 define("DB_USER", "yoshi");
-//define("DB_USER", "mikanbako");
 /**
  * データベース：パスワード
  */
 define("DB_PASS", "test");
-//define("DB_PASS", "word_book1234");
 /**
  * データベース：エラーメッセージ
  */

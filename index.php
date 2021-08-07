@@ -5,10 +5,9 @@
  * 
  * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
  */
-
+require_once("util.php");
 session_start();
-$_SESSION = array();
-session_destroy();
+unsetSession();
 ?>
 <?php include(dirname(__FILE__) . '/header.php'); ?>
 <main>

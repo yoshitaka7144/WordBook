@@ -6,12 +6,12 @@
  * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
  */
 
-session_start();
-$_SESSION = array();
-session_destroy();
 require_once("config.php");
 require_once("validation.php");
 require_once("util.php");
+
+session_start();
+unsetSession();
 
 // 入力内容
 $inputId = filter_input(INPUT_POST, "inputId");

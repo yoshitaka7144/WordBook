@@ -105,6 +105,7 @@ header {
   display: -ms-flexbox;
   display: flex;
   top: 0;
+  z-index: 100;
 }
 
 #logo a {

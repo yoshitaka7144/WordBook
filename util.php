@@ -16,3 +16,18 @@ function h($str)
 {
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
+
+
+function unsetSession()
+{
+  unset($_SESSION["dbConnected"]);
+  unset($_SESSION["quizData"]);
+  unset($_SESSION["quizCount"]);
+  unset($_SESSION["quizType"]);
+  unset($_SESSION["enabledAudio"]);
+  unset($_SESSION["quizCurrentIndex"]);
+  unset($_SESSION["startTime"]);
+  unset($_SESSION["incorrect"]);
+  unset($_SESSION["finished"]);
+  unset($_SESSION["endTime"]);
+}

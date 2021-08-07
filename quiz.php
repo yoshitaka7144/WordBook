@@ -5,10 +5,10 @@
  * 
  * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
  */
-
-session_start();
 require_once("config.php");
 require_once("util.php");
+
+session_start();
 $dbErrorMessage = "";
 
 // クイズ設定

@@ -6,9 +6,9 @@
  * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
  */
 
-session_start();
 require_once("config.php");
 require_once("validation.php");
+session_start();
 
 // 二重処理防止用リダイレクト
 if (isset($_SESSION["dbConnected"])) {
