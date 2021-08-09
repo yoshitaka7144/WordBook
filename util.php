@@ -31,3 +31,14 @@ function unsetSession()
   unset($_SESSION["finished"]);
   unset($_SESSION["endTime"]);
 }
+
+
+function minusRegistCount($pdo)
+{
+  $stmt = $pdo->prepare("update users set regist_count = :regist_count where name = :name");
+  $stmt->bindValue(":regist_count", $_SESSION["user"]["registCount"] - 1);
+  $stmt->bindValue(":name", $_SESSION["user"]["name"]);
+  $stmt->execute();
+
+  $_SESSION["user"]["registCount"]--;
+}

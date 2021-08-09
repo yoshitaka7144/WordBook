@@ -1,5 +1,6 @@
 // クイズ画面用js
 $(function () {
+
   // 解答するボタン押下時の処理
   $("#btn-answer").on("click", function () {
     // 正解テキスト

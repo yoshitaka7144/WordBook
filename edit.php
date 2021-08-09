@@ -13,6 +13,12 @@ require_once("util.php");
 session_start();
 unsetSession();
 
+// 非ログイン時
+if (!isset($_SESSION["user"])) {
+  header("Location: ./index.php");
+  exit;
+}
+
 // 入力内容
 $inputId = filter_input(INPUT_POST, "inputId");
 $inputType = filter_input(INPUT_POST, "inputType");
@@ -157,11 +163,20 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
                 <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?= h($inputAnswer) ?>"></td>
               </tr>
             </table>
-            <div class="btn-wrapper">
-              <input class="btn btn-small btn-blue" type="submit" name="create" value="登録">
-              <input class="btn btn-small btn-green" type="submit" name="update" value="更新">
-              <input class="btn btn-small btn-red" type="submit" name="delete" value="削除">
-            </div>
+            <?php if ($_SESSION["user"]["registCount"] <= 0) : ?>
+              <p class="message color-red">編集可能回数がありません。編集操作は出来ません。</p>
+              <div class="btn-wrapper">
+                <input class="btn btn-small btn-blue" type="submit" name="create" value="登録" disabled>
+                <input class="btn btn-small btn-green" type="submit" name="update" value="更新" disabled>
+                <input class="btn btn-small btn-red" type="submit" name="delete" value="削除" disabled>
+              </div>
+            <?php else : ?>
+              <div class="btn-wrapper">
+                <input class="btn btn-small btn-blue" type="submit" name="create" value="登録">
+                <input class="btn btn-small btn-green" type="submit" name="update" value="更新">
+                <input class="btn btn-small btn-red" type="submit" name="delete" value="削除">
+              </div>
+            <?php endif ?>
           </form>
         </div>
         <div class="edit-table">

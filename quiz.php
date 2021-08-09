@@ -163,6 +163,20 @@ if ($finished) {
                   <th>経過時間</th>
                   <td class="fadeup delay-time-5"><?= $_SESSION["endTime"] - $_SESSION["startTime"] ?>秒</td>
                 </tr>
+                <?php if (isset($_SESSION["user"])) : ?>
+                  <tr>
+                    <th>累計正解数</th>
+                    <td class="fadeup delay-time-6"><?= $_SESSION["user"]["answerCount"] ?></td>
+                  </tr>
+                  <tr>
+                    <th>aaaa</th>
+                    <td class="">
+                      <div id="count-progress">
+                        <div id="count-progress-bar"></div>
+                      </div>
+                    </td>
+                  </tr>
+                <?php endif ?>
               </table>
               <fieldset class="incorrect-area">
                 <legend>不正解の問題と正解</legend>
@@ -234,3 +248,12 @@ if ($finished) {
   </div>
 </main>
 <?php include(dirname(__FILE__) . '/footer.php'); ?>
+<?php 
+if($finished){
+  echo <<<EOM
+  <script type="text/javascript">
+  $("#count-progress-bar").animate({width: 100}, 2000, "linear", function(){});
+  </script>
+  EOM;
+}
+?>

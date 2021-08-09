@@ -105,7 +105,7 @@ header {
   margin: 0 0 0 auto;
   a {
     line-height: 60px;
-    padding: 0 25px;
+    padding: 0 20px;
     color: white;
     display: block;
   }
@@ -284,6 +284,37 @@ footer {
 
 /*----------------------------------------------
 
+ログインページ
+
+----------------------------------------------*/
+.login {
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  border-radius: 6px;
+  text-align: center;
+
+  input[type="text"],
+  input[type="password"] {
+    display: inline-block;
+    width: 65%;
+    height: 35px;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+
+    &:focus {
+      outline: none;
+      border-color: dodgerBlue;
+      box-shadow: 0 0 5px 0 dodgerBlue;
+    }
+  }
+}
+
+/*----------------------------------------------
+
 編集ページ
 
 ----------------------------------------------*/
@@ -331,6 +362,11 @@ footer {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    &:focus {
+      outline: none;
+      border-color: dodgerBlue;
+      box-shadow: 0 0 5px 0 dodgerBlue;
+    }
   }
 
   .form-select {
@@ -339,6 +375,11 @@ footer {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    &:focus {
+      outline: none;
+      border-color: dodgerBlue;
+      box-shadow: 0 0 5px 0 dodgerBlue;
+    }
   }
 
   .form-checkbox {
@@ -672,6 +713,27 @@ footer {
     tr:nth-child(4) td {
       color: #00c546;
     }
+
+    #count-progress {
+      display: inline-block;
+      width: 80%;
+      border-radius: 15px;
+      height: 15px;
+      background-color: #e9edf1;
+      position: relative;
+
+      #count-progress-bar {
+        display: inline-block;
+        position: absolute;
+        top:0;
+        left: 0;
+        transition: width 1.0s ease;
+        border-radius: 15px;
+        width: 66%;
+        height: 100%;
+        background-color: #337ab7;
+      }
+    }
   }
 
   .incorrect-area {
@@ -739,6 +801,14 @@ footer {
 
 .delay-time-5 {
   animation-delay: 1.6s;
+}
+
+.delay-time-6 {
+  animation-delay: 2s;
+}
+
+.delay-time-7 {
+  animation-delay: 2.4s;
 }
 
 @keyframes fadeup {
@@ -896,7 +966,7 @@ footer {
     }
   }
 
-  #text-question{
+  #text-question {
     font-size: 22px;
   }
 

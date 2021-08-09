@@ -5,6 +5,7 @@
  * 
  * @author yoshitaka Nagai <yoshitaka7144@gmail.com>
  */
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -29,9 +30,16 @@
         </div>
         <nav id="pc-nav">
             <ul>
-                <li><a href="edit.php">問題編集</a></li>
+                <?php if (isset($_SESSION["user"])) : ?>
+                    <li><a href="edit.php">問題編集</a></li>
+                <?php endif ?>
                 <li><a href="quizSetting.php?type=和訳">和訳クイズ</a></li>
                 <li><a href="quizSetting.php?type=英訳">英訳クイズ</a></li>
+                <?php if (isset($_SESSION["user"])) : ?>
+                    <li><a href="logout.php">ログアウト</a></li>
+                <?php else : ?>
+                    <li><a href="login.php">ログイン</a></li>
+                <?php endif ?>
             </ul>
         </nav>
         <div id="hamburger">
@@ -41,9 +49,16 @@
     <nav id="sp-nav">
         <ul>
             <li><a href="./">トップ画面</a></li>
-            <li><a href="edit.php">問題編集</a></li>
+            <?php if (isset($_SESSION["user"])) : ?>
+                <li><a href="edit.php">問題編集</a></li>
+            <?php endif ?>
             <li><a href="quizSetting.php?type=和訳">和訳クイズ</a></li>
             <li><a href="quizSetting.php?type=英訳">英訳クイズ</a></li>
+            <?php if (isset($_SESSION["user"])) : ?>
+                <li><a href="logout.php">ログアウト</a></li>
+            <?php else : ?>
+                <li><a href="login.php">ログイン</a></li>
+            <?php endif ?>
             <li id="close"><span><i class="fas fa-times"></i>閉じる</span></li>
         </ul>
     </nav>

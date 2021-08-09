@@ -123,7 +123,7 @@ header {
 
 #pc-nav a {
   line-height: 60px;
-  padding: 0 25px;
+  padding: 0 20px;
   color: white;
   display: block;
 }
@@ -335,6 +335,39 @@ footer {
 
 /*----------------------------------------------
 
+ログインページ
+
+----------------------------------------------*/
+.login {
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  display: inline-block;
+  width: 65%;
+  height: 35px;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+  outline: none;
+  border-color: dodgerBlue;
+  -webkit-box-shadow: 0 0 5px 0 dodgerBlue;
+          box-shadow: 0 0 5px 0 dodgerBlue;
+}
+
+/*----------------------------------------------
+
 編集ページ
 
 ----------------------------------------------*/
@@ -387,12 +420,26 @@ footer {
   border: 1px solid #ccc;
 }
 
+.input-form .form-text:focus {
+  outline: none;
+  border-color: dodgerBlue;
+  -webkit-box-shadow: 0 0 5px 0 dodgerBlue;
+          box-shadow: 0 0 5px 0 dodgerBlue;
+}
+
 .input-form .form-select {
   font-size: 16px;
   width: 75px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.input-form .form-select:focus {
+  outline: none;
+  border-color: dodgerBlue;
+  -webkit-box-shadow: 0 0 5px 0 dodgerBlue;
+          box-shadow: 0 0 5px 0 dodgerBlue;
 }
 
 .input-form .form-checkbox {
@@ -752,6 +799,28 @@ footer {
   color: #00c546;
 }
 
+.result .result-table #count-progress {
+  display: inline-block;
+  width: 80%;
+  border-radius: 15px;
+  height: 15px;
+  background-color: #e9edf1;
+  position: relative;
+}
+
+.result .result-table #count-progress #count-progress-bar {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: width 1.0s ease;
+  transition: width 1.0s ease;
+  border-radius: 15px;
+  width: 66%;
+  height: 100%;
+  background-color: #337ab7;
+}
+
 .result .incorrect-area {
   width: 45%;
   height: 290px;
@@ -825,6 +894,16 @@ footer {
 .delay-time-5 {
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
+}
+
+.delay-time-6 {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.delay-time-7 {
+  -webkit-animation-delay: 2.4s;
+          animation-delay: 2.4s;
 }
 
 @-webkit-keyframes fadeup {

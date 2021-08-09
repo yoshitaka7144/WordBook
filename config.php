@@ -28,6 +28,20 @@ define("DB_PASS", "test");
 define("DB_ERROR_MESSAGE", "データベース処理にてエラーが発生しました。");
 
 /**
+ * ユーザーレベル計算用
+ */
+define("USER_LEVEL_DENOMINATOR", 10);
+
+/**
+ * ログインページ：ログイン処理制御用
+ */
+define("LOGIN_USER", "login");
+/**
+ * ユーザー登録ページ：登録処理制御用
+ */
+define("CREATE_USER", "create");
+
+/**
  * 編集ページ：デフォルト
  */
 define("PAGE_TYPE_DEFAULT", 0);
