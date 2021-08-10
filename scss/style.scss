@@ -280,6 +280,56 @@ footer {
   margin: 10px;
   border-radius: 6px;
   text-align: center;
+
+  .login-info {
+    border-collapse: collapse;
+    font-size: 16px;
+    margin: 0 auto;
+    width: 80%;
+
+    th,
+    td {
+      padding: 10px 15px;
+    }
+
+    td{
+      .count-progress {
+        display: inline-block;
+        width: 80%;
+        border-radius: 15px;
+        height: 10px;
+        background-color: #e9edf1;
+        position: relative;
+  
+        .count-progress-bar {
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: 15px;
+          width: 0%;
+          height: 100%;
+          background-color: #6cd8a2;
+        }
+      }
+    }
+
+    tr:nth-child(odd) {
+      background-color: #f1f8ff;
+      th {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 0px;
+      }
+      td {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
 }
 
 /*----------------------------------------------
@@ -718,20 +768,19 @@ footer {
       display: inline-block;
       width: 80%;
       border-radius: 15px;
-      height: 15px;
+      height: 10px;
       background-color: #e9edf1;
       position: relative;
 
       #count-progress-bar {
         display: inline-block;
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
-        transition: width 1.0s ease;
         border-radius: 15px;
-        width: 66%;
+        width: 0%;
         height: 100%;
-        background-color: #337ab7;
+        background-color: #6cd8a2;
       }
     }
   }

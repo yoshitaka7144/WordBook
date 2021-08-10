@@ -120,6 +120,29 @@ if ($finished) {
   $incorrectCount = isset($_SESSION["incorrect"]) ? count($_SESSION["incorrect"]) : 0;
   if (!isset($_SESSION["endTime"])) {
     $_SESSION["endTime"] = time();
+    if (isset($_SESSION["user"])) {
+      $levelUpCount = floor((substr($_SESSION["user"]["answerCount"], -1)  + ($_SESSION["quizCount"] - $incorrectCount)) / USER_LEVEL_DENOMINATOR);
+      $_SESSION["user"]["registCount"] += $levelUpCount;
+      $_SESSION["user"]["answerCount"] += ($_SESSION["quizCount"] - $incorrectCount);
+      try {
+        $pdo = new PDO(
+          "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
+          DB_USER,
+          DB_PASS,
+          [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+          ]
+        );
+        $stmt = $pdo->prepare("update users set answer_count = :answer_count, regist_count = :regist_count where name = :name");
+        $stmt->bindValue(":answer_count", $_SESSION["user"]["answerCount"]);
+        $stmt->bindValue(":regist_count", $_SESSION["user"]["registCount"]);
+        $stmt->bindValue(":name", $_SESSION["user"]["name"]);
+        $stmt->execute();
+      } catch (PDOException $e) {
+        $dbErrorMessage = $e->getMessage();
+      }
+    }
   }
 } else {
   if (empty($dbErrorMessage)) {
@@ -169,8 +192,11 @@ if ($finished) {
                     <td class="fadeup delay-time-6"><?= $_SESSION["user"]["answerCount"] ?></td>
                   </tr>
                   <tr>
-                    <th>aaaa</th>
+                    <th>レベル</th>
                     <td class="">
+                      <span id="user-level">
+                        <?= floor(($_SESSION["user"]["answerCount"] - ($_SESSION["quizCount"] - $incorrectCount)) / USER_LEVEL_DENOMINATOR) ?>
+                      </span>
                       <div id="count-progress">
                         <div id="count-progress-bar"></div>
                       </div>
@@ -248,12 +274,27 @@ if ($finished) {
   </div>
 </main>
 <?php include(dirname(__FILE__) . '/footer.php'); ?>
-<?php 
-if($finished){
-  echo <<<EOM
+<?php if ($finished && isset($_SESSION["user"])) : ?>
   <script type="text/javascript">
-  $("#count-progress-bar").animate({width: 100}, 2000, "linear", function(){});
+    var ac = <?= $_SESSION["user"]["answerCount"] - ($_SESSION["quizCount"] - $incorrectCount) ?>;
+    var cc = <?= $_SESSION["quizCount"] - $incorrectCount ?>;
+    progressBarAnimate(ac, cc);
+
+    function progressBarAnimate(answerCount, correctCount) {
+      var answerCountOnesPlace = Number(answerCount.toString().slice(-1));
+      $("#count-progress-bar").css("width", answerCountOnesPlace * 10 + "%");
+      if (answerCountOnesPlace + correctCount < 10) {
+        $("#count-progress-bar").animate({
+          width: (answerCountOnesPlace + correctCount) * 10 + "%"
+        }, 1000);
+      } else {
+        $("#count-progress-bar").animate({
+          width: "100%"
+        }, 1000, function() {
+          $("#user-level").text(Number($("#user-level").text()) + 1);
+          progressBarAnimate(0, correctCount - (10 - answerCountOnesPlace));
+        });
+      }
+    }
   </script>
-  EOM;
-}
-?>
+<?php endif ?>

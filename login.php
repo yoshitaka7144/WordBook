@@ -47,6 +47,8 @@ if ($loginUser === LOGIN_USER) {
         $_SESSION["user"]["answerCount"] = $row["answer_count"];
         $_SESSION["user"]["registCount"] = $row["regist_count"];
         $_SESSION["user"]["lastAccessDate"] = date("Y-m-d");
+
+        // 最終アクセス日から日付を跨いだログインの場合
         if ($row["last_access_date"] !== $_SESSION["user"]["lastAccessDate"]) {
           $plusCount = floor($_SESSION["user"]["answerCount"] / USER_LEVEL_DENOMINATOR);
           if ($_SESSION["user"]["registCount"] < $plusCount) {

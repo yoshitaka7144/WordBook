@@ -19,6 +19,9 @@ if (!isset($_SESSION["user"])) {
   exit;
 }
 
+// 最終アクセス更新
+updateLastAccessDate();
+
 // 入力内容
 $inputId = filter_input(INPUT_POST, "inputId");
 $inputType = filter_input(INPUT_POST, "inputType");
@@ -143,7 +146,7 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
             <table class="input-form">
               <tr>
                 <th>ID</th>
-                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?= h($inputId) ?>"></td>
+                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?= h($inputId) ?>" autocomplete="off"></td>
               </tr>
               <tr>
                 <th>種類</th>
@@ -156,11 +159,11 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
               </tr>
               <tr>
                 <th>問題</th>
-                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?= h($inputQuestion) ?>"></td>
+                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?= h($inputQuestion) ?>" autocomplete="off"></td>
               </tr>
               <tr>
                 <th>答え</th>
-                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?= h($inputAnswer) ?>"></td>
+                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?= h($inputAnswer) ?>" autocomplete="off"></td>
               </tr>
             </table>
             <?php if ($_SESSION["user"]["registCount"] <= 0) : ?>

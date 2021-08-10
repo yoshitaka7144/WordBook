@@ -333,6 +333,56 @@ footer {
   text-align: center;
 }
 
+.menu .login-info {
+  border-collapse: collapse;
+  font-size: 16px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.menu .login-info th,
+.menu .login-info td {
+  padding: 10px 15px;
+}
+
+.menu .login-info td .count-progress {
+  display: inline-block;
+  width: 80%;
+  border-radius: 15px;
+  height: 10px;
+  background-color: #e9edf1;
+  position: relative;
+}
+
+.menu .login-info td .count-progress .count-progress-bar {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  width: 0%;
+  height: 100%;
+  background-color: #6cd8a2;
+}
+
+.menu .login-info tr:nth-child(odd) {
+  background-color: #f1f8ff;
+}
+
+.menu .login-info tr:nth-child(odd) th {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+}
+
+.menu .login-info tr:nth-child(odd) td {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 5px;
+}
+
 /*----------------------------------------------
 
 ログインページ
@@ -803,7 +853,7 @@ footer {
   display: inline-block;
   width: 80%;
   border-radius: 15px;
-  height: 15px;
+  height: 10px;
   background-color: #e9edf1;
   position: relative;
 }
@@ -813,12 +863,10 @@ footer {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transition: width 1.0s ease;
-  transition: width 1.0s ease;
   border-radius: 15px;
-  width: 66%;
+  width: 0%;
   height: 100%;
-  background-color: #337ab7;
+  background-color: #6cd8a2;
 }
 
 .result .incorrect-area {
