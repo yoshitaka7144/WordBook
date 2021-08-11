@@ -10,6 +10,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Hiragino Kaku Gothic ProN";
+  color: rgba(0, 0, 0, 0.8);
 }
 
 a {
@@ -662,7 +663,11 @@ footer {
 
 #data-table .selected-row {
   background-color: #134fff !important;
-  color: white;
+}
+
+#data-table .selected-row th,
+#data-table .selected-row td {
+  color: white !important;
 }
 
 .radio-fieldset {

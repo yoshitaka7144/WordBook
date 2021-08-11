@@ -8,6 +8,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Hiragino Kaku Gothic ProN";
+  color: rgba(0, 0, 0, 0.8);
 }
 
 a {
@@ -579,7 +580,10 @@ footer {
 
   .selected-row {
     background-color: #134fff !important;
-    color: white;
+    th,
+    td {
+      color: white !important;
+    }
   }
 }
 
