@@ -324,6 +324,18 @@ footer {
 トップページ
 
 ----------------------------------------------*/
+.top-image {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.top-image img {
+  width: 35%;
+  margin-top: 15px;
+}
+
 .menu {
   width: 50%;
   background-color: white;
@@ -1127,6 +1139,10 @@ footer {
   }
   #hamburger {
     display: block;
+  }
+  .top-image img {
+    width: 70%;
+    margin-top: 15px;
   }
   .main-contents {
     -ms-flex-wrap: wrap;

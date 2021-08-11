@@ -193,7 +193,7 @@ if ($finished) {
                   </tr>
                   <tr>
                     <th>レベル</th>
-                    <td class="">
+                    <td>
                       <span id="user-level">
                         <?= floor(($_SESSION["user"]["answerCount"] - ($_SESSION["quizCount"] - $incorrectCount)) / USER_LEVEL_DENOMINATOR) ?>
                       </span>
@@ -278,7 +278,7 @@ if ($finished) {
   <script type="text/javascript">
     var ac = <?= $_SESSION["user"]["answerCount"] - ($_SESSION["quizCount"] - $incorrectCount) ?>;
     var cc = <?= $_SESSION["quizCount"] - $incorrectCount ?>;
-    progressBarAnimate(ac, cc);
+    setTimeout(function(){progressBarAnimate(ac, cc)}, 2400);
 
     function progressBarAnimate(answerCount, correctCount) {
       var answerCountOnesPlace = Number(answerCount.toString().slice(-1));
@@ -292,6 +292,7 @@ if ($finished) {
           width: "100%"
         }, 1000, function() {
           $("#user-level").text(Number($("#user-level").text()) + 1);
+          $("#count-progress").after("<p class='color-blue'>level up!</p>");
           progressBarAnimate(0, correctCount - (10 - answerCountOnesPlace));
         });
       }

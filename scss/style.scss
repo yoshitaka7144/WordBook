@@ -273,6 +273,17 @@ footer {
 トップページ
 
 ----------------------------------------------*/
+.top-image {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+
+  img {
+    width: 35%;
+    margin-top: 15px;
+  }
+}
 .menu {
   width: 50%;
   background-color: white;
@@ -367,7 +378,7 @@ footer {
       box-shadow: 0 0 5px 0 dodgerBlue;
     }
 
-    &::placeholder{
+    &::placeholder {
       font-size: 12px;
     }
   }
@@ -940,6 +951,13 @@ footer {
 
   #hamburger {
     display: block;
+  }
+
+  .top-image {
+    img {
+      width: 70%;
+      margin-top: 15px;
+    }
   }
 
   .main-contents {

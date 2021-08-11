@@ -49,12 +49,11 @@ if ($loginUser === LOGIN_USER) {
         $_SESSION["user"]["lastAccessDate"] = date("Y-m-d");
 
         // 最終アクセス日から日付を跨いだログインの場合
-        if ($row["last_access_date"] !== $_SESSION["user"]["lastAccessDate"]) {
+        if ($row["last_access_date"] < $_SESSION["user"]["lastAccessDate"]) {
           $plusCount = floor($_SESSION["user"]["answerCount"] / USER_LEVEL_DENOMINATOR);
           if ($_SESSION["user"]["registCount"] < $plusCount) {
             $_SESSION["user"]["registCount"] = $plusCount;
           }
-
           // 更新
           $stmt = $pdo->prepare("update users set regist_count = :regist_count, last_access_date = :last_access_date where name = :name");
           $stmt->bindValue(":regist_count", $_SESSION["user"]["registCount"]);

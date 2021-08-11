@@ -54,6 +54,7 @@ function updateLastAccessDate()
     }
 
     // 更新
+    $_SESSION["user"]["lastAccessDate"] = $nowDate;
     $pdo = new PDO(
       "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
       DB_USER,
