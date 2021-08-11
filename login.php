@@ -82,6 +82,7 @@ if ($loginUser === LOGIN_USER) {
     <div class="main-contents">
       <div class="login">
         <form action="" method="post">
+          <p class="title">ログイン</p>
           <?php if (!empty($errors)) : ?>
             <?php foreach ($errors as $error) : ?>
               <p class="message color-red"><?= $error ?></p>
@@ -90,7 +91,7 @@ if ($loginUser === LOGIN_USER) {
           <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off">
           <input type="password" name="inputPassword" id="inputPassword" maxlength="8" placeholder="パスワード" autocomplete="off">
           <input class="btn btn-green btn-normal" type="submit" value="ログイン">
-          <p><a href="createUser.php">新規ユーザー登録はこちらから</a></p>
+          <p class="message"><a href="createUser.php">新規ユーザー登録はこちらから</a></p>
           <input type="hidden" name="loginUser" value="<?= LOGIN_USER ?>">
         </form>
       </div>

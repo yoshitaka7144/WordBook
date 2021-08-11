@@ -285,14 +285,20 @@ footer {
     border-collapse: collapse;
     font-size: 16px;
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
+
+    span {
+      color: #019b37;
+      font-weight: bold;
+      padding: 0 3px;
+    }
 
     th,
     td {
       padding: 10px 15px;
     }
 
-    td{
+    td {
       .count-progress {
         display: inline-block;
         width: 80%;
@@ -300,7 +306,7 @@ footer {
         height: 10px;
         background-color: #e9edf1;
         position: relative;
-  
+
         .count-progress-bar {
           display: inline-block;
           position: absolute;
@@ -338,17 +344,17 @@ footer {
 
 ----------------------------------------------*/
 .login {
-  width: 50%;
+  width: 60%;
   background-color: white;
   padding: 20px;
-  margin: auto;
+  margin: 10px;
   border-radius: 6px;
   text-align: center;
 
   input[type="text"],
   input[type="password"] {
     display: inline-block;
-    width: 65%;
+    width: 70%;
     height: 35px;
     padding: 10px;
     margin: 15px 0;
@@ -359,6 +365,10 @@ footer {
       outline: none;
       border-color: dodgerBlue;
       box-shadow: 0 0 5px 0 dodgerBlue;
+    }
+
+    &::placeholder{
+      font-size: 12px;
     }
   }
 }
@@ -938,12 +948,19 @@ footer {
   }
 
   .menu,
+  .login,
   .edit-input,
   .edit-table,
   .edit-confirm,
   .quiz {
     width: 100%;
     padding: 10px;
+  }
+
+  .menu {
+    .login-info {
+      font-size: 14px;
+    }
   }
 
   .input-form {
