@@ -41,7 +41,7 @@ if ($createUser === CREATE_USER) {
         ]
       );
 
-      $stmt = $pdo->prepare("select count(*) from Users where name = :name");
+      $stmt = $pdo->prepare("select count(*) from users where name = :name");
       $stmt->bindValue(":name", $inputUserName);
       $stmt->execute();
       $rowCount = $stmt->fetchColumn();
