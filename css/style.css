@@ -92,6 +92,14 @@ main {
   color: green;
 }
 
+.link {
+  color: #4080e0;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
 /*----------------------------------------------
 
 ヘッダー関連
@@ -239,6 +247,10 @@ footer {
   height: 60px;
   width: 100%;
   background-color: #999898;
+}
+
+footer i {
+  margin-right: 5px;
 }
 
 /*----------------------------------------------

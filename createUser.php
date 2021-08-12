@@ -8,7 +8,9 @@
 require_once("config.php");
 require_once("util.php");
 session_start();
-unsetSession();
+unsetQuizSession();
+
+// 非ログイン時
 if (isset($_SESSION["user"])) {
   header("Location: ./index.php");
   exit;
@@ -93,7 +95,7 @@ if ($createUser === CREATE_USER) {
           <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off" value="<?= h($inputUserName) ?>">
           <input type="password" name="inputPassword" id="inputPassword" maxlength="8" placeholder="パスワード(半角英数字4文字以上)" autocomplete="off">
           <input class="btn btn-green btn-normal" type="submit" value="登録">
-          <p class="message"><a href="login.php">既に登録済みの方はこちらからログイン</a></p>
+          <p class="message"><a class="link" href="login.php">既に登録済みの方はこちらからログイン</a></p>
           <input type="hidden" name="createUser" value="<?= CREATE_USER ?>">
         </form>
       </div>

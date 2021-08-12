@@ -7,7 +7,7 @@
  */
 ?>
 <footer>
-  <span>&copy;YOSHITAKA NAGAI</span>
+  <span><i class="far fa-copyright"></i>YOSHITAKA NAGAI</span>
 </footer>
 </body>
 

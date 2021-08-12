@@ -120,6 +120,8 @@ if ($finished) {
   $incorrectCount = isset($_SESSION["incorrect"]) ? count($_SESSION["incorrect"]) : 0;
   if (!isset($_SESSION["endTime"])) {
     $_SESSION["endTime"] = time();
+
+    // ログイン時は累計正解数等の更新処理を行う
     if (isset($_SESSION["user"])) {
       $levelUpCount = floor((substr($_SESSION["user"]["answerCount"], -1)  + ($_SESSION["quizCount"] - $incorrectCount)) / USER_LEVEL_DENOMINATOR);
       $_SESSION["user"]["registCount"] += $levelUpCount;
@@ -265,7 +267,9 @@ if ($finished) {
           <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
           <p class="message"><?= $dbErrorMessage ?></p>
           <div class="btn-wrapper">
-            <a href="edit.php" class="btn btn-green btn-normal">問題編集</a>
+            <?php if (isset($_SESSION["user"])) : ?>
+              <a href="edit.php" class="btn btn-green btn-normal">問題編集</a>
+            <?php endif ?>
             <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>
           </div>
         <?php endif ?>
@@ -276,10 +280,14 @@ if ($finished) {
 <?php include(dirname(__FILE__) . '/footer.php'); ?>
 <?php if ($finished && isset($_SESSION["user"])) : ?>
   <script type="text/javascript">
+    // 少し時間をおいて実行
     var ac = <?= $_SESSION["user"]["answerCount"] - ($_SESSION["quizCount"] - $incorrectCount) ?>;
     var cc = <?= $_SESSION["quizCount"] - $incorrectCount ?>;
-    setTimeout(function(){progressBarAnimate(ac, cc)}, 2400);
+    setTimeout(function() {
+      progressBarAnimate(ac, cc)
+    }, 2400);
 
+    // 結果表示のプログレスバーのアニメーション処理
     function progressBarAnimate(answerCount, correctCount) {
       var answerCountOnesPlace = Number(answerCount.toString().slice(-1));
       $("#count-progress-bar").css("width", answerCountOnesPlace * 10 + "%");

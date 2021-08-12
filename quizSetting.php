@@ -9,7 +9,7 @@ require_once("config.php");
 require_once("util.php");
 
 session_start();
-unsetSession();
+unsetQuizSession();
 
 // 問題種類
 $type = filter_input(INPUT_GET, "type");
@@ -46,7 +46,9 @@ try {
           <p class="message color-red"><?= DB_ERROR_MESSAGE ?></p>
           <p class="message"><?= $dbErrorMessage ?></p>
           <div class="btn-wrapper">
-            <a href="edit.php" class="btn btn-green btn-normal">問題編集</a>
+            <?php if (isset($_SESSION["user"])) : ?>
+              <a href="edit.php" class="btn btn-green btn-normal">問題編集</a>
+            <?php endif ?>
             <a href="index.php" class="btn btn-blue btn-normal">トップ画面</a>
           </div>
         <?php else : ?>

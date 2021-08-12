@@ -17,8 +17,12 @@ function h($str)
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-
-function unsetSession()
+/**
+ * クイズ関連のセッションクリア
+ *
+ * @return void
+ */
+function unsetQuizSession()
 {
   unset($_SESSION["dbConnected"]);
   unset($_SESSION["quizData"]);
@@ -32,7 +36,12 @@ function unsetSession()
   unset($_SESSION["endTime"]);
 }
 
-
+/**
+ * 編集可能回数を1減らしてデータ更新
+ *
+ * @param PDO $pdo
+ * @return void
+ */
 function minusRegistCount($pdo)
 {
   $stmt = $pdo->prepare("update users set regist_count = :regist_count where name = :name");
@@ -43,11 +52,19 @@ function minusRegistCount($pdo)
   $_SESSION["user"]["registCount"]--;
 }
 
+/**
+ * 最終アクセス日更新処理
+ *
+ * @return void
+ */
 function updateLastAccessDate()
 {
+  // 現在日付
   $nowDate = date("Y-m-d");
+
+  // セッションにある最終アクセス日と現在日付比較
   if ($_SESSION["user"]["lastAccessDate"] < $nowDate) {
-    // 
+    // 編集可能回数をレベルの数値にする
     $plusCount = floor($_SESSION["user"]["answerCount"] / USER_LEVEL_DENOMINATOR);
     if ($_SESSION["user"]["registCount"] < $plusCount) {
       $_SESSION["user"]["registCount"] = $plusCount;

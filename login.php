@@ -8,7 +8,9 @@
 require_once("config.php");
 require_once("util.php");
 session_start();
-unsetSession();
+unsetQuizSession();
+
+// ログイン時はトップページへ
 if (isset($_SESSION["user"])) {
   header("Location: ./index.php");
 }
@@ -41,6 +43,7 @@ if ($loginUser === LOGIN_USER) {
       $stmt->execute();
       $row = $stmt->fetch();
 
+      // DBのデータと入力されたユーザー名、パスワードが一致の場合
       if (password_verify($inputPassword, $row["password"])) {
         // セッションへデータ保存
         $_SESSION["user"]["name"] = $inputUserName;
@@ -65,7 +68,7 @@ if ($loginUser === LOGIN_USER) {
         // トップページへ遷移させる
         header("Location: ./index.php");
         exit;
-      }else{
+      } else {
         $errors[] = "ユーザー名またはパスワードが間違っています。";
       }
     } catch (PDOException $e) {
@@ -90,7 +93,7 @@ if ($loginUser === LOGIN_USER) {
           <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off">
           <input type="password" name="inputPassword" id="inputPassword" maxlength="8" placeholder="パスワード" autocomplete="off">
           <input class="btn btn-green btn-normal" type="submit" value="ログイン">
-          <p class="message"><a href="createUser.php">新規ユーザー登録はこちらから</a></p>
+          <p class="message"><a class="link" href="createUser.php">新規ユーザー登録はこちらから</a></p>
           <input type="hidden" name="loginUser" value="<?= LOGIN_USER ?>">
         </form>
       </div>

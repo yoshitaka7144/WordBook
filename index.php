@@ -8,8 +8,9 @@
 require_once("config.php");
 require_once("util.php");
 session_start();
-unsetSession();
+unsetQuizSession();
 
+// ログイン時、最終アクセス日更新
 if (isset($_SESSION["user"])) {
   updateLastAccessDate();
 }
@@ -62,7 +63,7 @@ if (isset($_SESSION["user"])) {
           <p class="title">ログイン</p>
           <p class="message">ログインユーザーのみ問題編集機能は利用できます</p>
           <a href="login.php" class="btn btn-normal btn-green">ログイン</a>
-          <p><a href="createUser.php">新規ユーザー登録はこちらから</a></p>
+          <p class="message"><a class="link" href="createUser.php">新規ユーザー登録はこちらから</a></p>
         </div>
       <?php endif ?>
       <div class="menu">

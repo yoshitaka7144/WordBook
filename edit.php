@@ -11,7 +11,7 @@ require_once("validation.php");
 require_once("util.php");
 
 session_start();
-unsetSession();
+unsetQuizSession();
 
 // 非ログイン時
 if (!isset($_SESSION["user"])) {
