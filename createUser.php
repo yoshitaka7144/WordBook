@@ -24,6 +24,8 @@ $errors = [];
 if ($createUser === CREATE_USER) {
   if (empty($inputUserName)) {
     $errors[] = "ユーザー名を入力してください。";
+  } elseif (mb_strlen($inputUserName) > 10) {
+    $errors[] = "ユーザー名は10文字以内で入力してください。";
   } elseif (empty($inputPassword)) {
     $errors[] = "パスワードを入力してください。";
   } elseif (!preg_match("/^[a-zA-Z0-9]{4,}$/", $inputPassword)) {
@@ -92,8 +94,8 @@ if ($createUser === CREATE_USER) {
               <p class="message color-red"><?= $error ?></p>
             <?php endforeach ?>
           <?php endif ?>
-          <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off" value="<?= h($inputUserName) ?>">
-          <input type="password" name="inputPassword" id="inputPassword" maxlength="8" placeholder="パスワード(半角英数字4文字以上)" autocomplete="off">
+          <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off" value="<?= h($inputUserName) ?>" maxlength="10">
+          <input type="password" name="inputPassword" id="inputPassword" placeholder="パスワード(半角英数字4文字以上)" autocomplete="off">
           <input class="btn btn-green btn-normal" type="submit" value="登録">
           <p class="message"><a class="link" href="login.php">既に登録済みの方はこちらからログイン</a></p>
           <input type="hidden" name="createUser" value="<?= CREATE_USER ?>">

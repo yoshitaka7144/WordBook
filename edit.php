@@ -146,7 +146,7 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
             <table class="input-form">
               <tr>
                 <th>ID</th>
-                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?= h($inputId) ?>" autocomplete="off"></td>
+                <td><input type="text" class="form-text" name="inputId" id="inputId" value="<?= h($inputId) ?>" autocomplete="off" maxlength="4"></td>
               </tr>
               <tr>
                 <th>種類</th>
@@ -159,11 +159,11 @@ $btnColor = ["" => "", REGIST_TYPE_CREATE => "btn-blue", REGIST_TYPE_UPDATE => "
               </tr>
               <tr>
                 <th>問題</th>
-                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?= h($inputQuestion) ?>" autocomplete="off"></td>
+                <td><input type="text" class="form-text" name="inputQuestion" id="inputQuestion" value="<?= h($inputQuestion) ?>" autocomplete="off" maxlength="15"></td>
               </tr>
               <tr>
                 <th>答え</th>
-                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?= h($inputAnswer) ?>" autocomplete="off"></td>
+                <td><input type="text" class="form-text" name="inputAnswer" id="inputAnswer" value="<?= h($inputAnswer) ?>" autocomplete="off" maxlength="15"></td>
               </tr>
             </table>
             <?php if ($_SESSION["user"]["registCount"] <= 0) : ?>

@@ -47,16 +47,12 @@ if (isset($_SESSION["user"])) {
               <td><?= h($_SESSION["user"]["answerCount"]) ?></td>
             </tr>
             <tr>
-              <th>前回アクセス日</th>
-              <td><?= h($_SESSION["user"]["lastAccessDate"]) ?></td>
-            </tr>
-            <tr>
               <th>編集可能回数</th>
               <td><?= h($_SESSION["user"]["registCount"]) ?></td>
             </tr>
           </table>
           <p class="message color-blue">※レベルアップ時に編集可能回数 +1</p>
-          <p class="message color-blue">※前回アクセス日から日付が変わったログイン時に+0~<?= h(floor($_SESSION["user"]["answerCount"] / USER_LEVEL_DENOMINATOR)) ?></p>
+          <p class="message color-blue">※日付変更時にレベル数値分まで増加</p>
         </div>
       <?php else : ?>
         <div class="menu">

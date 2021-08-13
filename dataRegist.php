@@ -55,37 +55,62 @@ if (!empty($inputErrors)) {
     );
 
     if ($registType === REGIST_TYPE_CREATE) {
-      // 登録処理
-      $stmt = $pdo->prepare("insert into words (type, question, answer, editor) values (:type, :question, :answer, :editor)");
+      // 内容重複チェック
+      $stmt = $pdo->prepare("select count(*) from words where type = :type and question = :question and answer = :answer");
       $stmt->bindValue(":type", $inputType);
       $stmt->bindValue(":question", $inputQuestion);
       $stmt->bindValue(":answer", $inputAnswer);
-      $stmt->bindValue(":editor", $_SESSION["user"]["name"]);
       $stmt->execute();
-      $resultMessage = $registType . "処理が完了しました。";
-      // 編集可能回数を減らす
-      minusRegistCount($pdo);
-    } elseif ($registType === REGIST_TYPE_UPDATE) {
-      // 更新処理
-      $stmt = $pdo->prepare("update words set type = :type, question = :question, answer = :answer, editor = :editor where id = :id");
-      $stmt->bindValue(":type", $inputType);
-      $stmt->bindValue(":question", $inputQuestion);
-      $stmt->bindValue(":answer", $inputAnswer);
-      $stmt->bindValue(":editor", $_SESSION["user"]["name"]);
-      $stmt->bindValue(":id", (int)$inputId, PDO::PARAM_INT);
-      $stmt->execute();
-      $count = $stmt->rowCount();
-      if ($count <= 0) {
-        $resultMessage = "更新対象データが存在しません。";
+      $rowCount = $stmt->fetchColumn();
+      if ($rowCount > 0) {
+        $resultMessage = "同じ内容のデータが既に登録されている為、".$registType."処理は行われませんでした。";
       } else {
+        // 登録処理
+        $stmt = $pdo->prepare("insert into words (type, question, answer, editor) values (:type, :question, :answer, :editor)");
+        $stmt->bindValue(":type", $inputType);
+        $stmt->bindValue(":question", $inputQuestion);
+        $stmt->bindValue(":answer", $inputAnswer);
+        $stmt->bindValue(":editor", $_SESSION["user"]["name"]);
+        $stmt->execute();
         $resultMessage = $registType . "処理が完了しました。";
         // 編集可能回数を減らす
         minusRegistCount($pdo);
       }
+    } elseif ($registType === REGIST_TYPE_UPDATE) {
+      // 内容重複チェック
+      $stmt = $pdo->prepare("select count(*) from words where type = :type and question = :question and answer = :answer");
+      $stmt->bindValue(":type", $inputType);
+      $stmt->bindValue(":question", $inputQuestion);
+      $stmt->bindValue(":answer", $inputAnswer);
+      $stmt->execute();
+      $rowCount = $stmt->fetchColumn();
+      if ($rowCount > 0) {
+        $resultMessage = "同じ内容のデータが既に登録されている為、".$registType."処理は行われませんでした。";
+      } else {
+        // 更新処理
+        $stmt = $pdo->prepare("update words set type = :type, question = :question, answer = :answer, editor = :editor where id = :id");
+        $stmt->bindValue(":type", $inputType);
+        $stmt->bindValue(":question", $inputQuestion);
+        $stmt->bindValue(":answer", $inputAnswer);
+        $stmt->bindValue(":editor", $_SESSION["user"]["name"]);
+        $stmt->bindValue(":id", (int)$inputId, PDO::PARAM_INT);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if ($count <= 0) {
+          $resultMessage = "更新対象データが存在しません。";
+        } else {
+          $resultMessage = $registType . "処理が完了しました。";
+          // 編集可能回数を減らす
+          minusRegistCount($pdo);
+        }
+      }
     } elseif ($registType === REGIST_TYPE_DELETE) {
       // 削除処理
-      $stmt = $pdo->prepare("delete from words where id = :id");
+      $stmt = $pdo->prepare("delete from words where id = :id and type = :type and question = :question and answer = :answer");
       $stmt->bindValue(":id", (int)$inputId, pdo::PARAM_INT);
+      $stmt->bindValue(":type", $inputType);
+      $stmt->bindValue(":question", $inputQuestion);
+      $stmt->bindValue(":answer", $inputAnswer);
       $stmt->execute();
       $count = $stmt->rowCount();
       if ($count <= 0) {

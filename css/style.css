@@ -132,7 +132,7 @@ header {
 
 #pc-nav a {
   line-height: 60px;
-  padding: 0 20px;
+  padding: 0 15px;
   color: white;
   display: block;
 }
@@ -185,6 +185,7 @@ header {
 
 #sp-nav li i {
   margin-right: 5px;
+  color: white;
 }
 
 #hamburger {

@@ -41,7 +41,7 @@ https://mikanbako.sakura.ne.jp/Wordbook/
 ## トップ画面
 クイズ画面へ遷移できます。非ログイン時はログイン画面へ遷移できます。ログイン時はユーザー情報の表示、編集画面へ遷移できます。  
 ![top1](https://user-images.githubusercontent.com/18690548/129180736-ae92c53c-285f-48d6-aacc-4a29f93d33af.PNG)
-![top2](https://user-images.githubusercontent.com/18690548/129208072-42d91229-1d57-4c32-bcdc-206717f32df4.PNG)
+![top2](https://user-images.githubusercontent.com/18690548/129361513-12acc99b-1d37-4204-a7f6-a413eabe72e6.PNG)
 
 ## ログイン画面
 ログインまたは新規ユーザー登録してログインできます。
@@ -74,6 +74,7 @@ https://mikanbako.sakura.ne.jp/Wordbook/
 [テーブル定義書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1kAnCUVVjwLSICFZMSjreRandVdp8pJWhO918HXTGdZw/edit?usp=sharing)
 
 # テスト
+[機能単体テスト（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1NxQPDQ28mIoBi_U8K8_BsIVLgF6n-kF7VXJyqp0OEfI/edit?usp=sharing)
 
 # リンク
 * [Github](https://github.com/yoshitaka7144)

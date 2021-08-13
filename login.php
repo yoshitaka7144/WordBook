@@ -44,7 +44,7 @@ if ($loginUser === LOGIN_USER) {
       $row = $stmt->fetch();
 
       // DBのデータと入力されたユーザー名、パスワードが一致の場合
-      if (password_verify($inputPassword, $row["password"])) {
+      if (!empty($row) && password_verify($inputPassword, $row["password"])) {
         // セッションへデータ保存
         $_SESSION["user"]["name"] = $inputUserName;
         $_SESSION["user"]["answerCount"] = $row["answer_count"];
@@ -90,7 +90,7 @@ if ($loginUser === LOGIN_USER) {
               <p class="message color-red"><?= $error ?></p>
             <?php endforeach ?>
           <?php endif ?>
-          <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off">
+          <input type="text" name="inputUserName" id="inputUserName" placeholder="ユーザ名" autocomplete="off" value="<?= h($inputUserName) ?>">
           <input type="password" name="inputPassword" id="inputPassword" maxlength="8" placeholder="パスワード" autocomplete="off">
           <input class="btn btn-green btn-normal" type="submit" value="ログイン">
           <p class="message"><a class="link" href="createUser.php">新規ユーザー登録はこちらから</a></p>
