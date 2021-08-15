@@ -13,9 +13,8 @@ require_once("util.php");
 
 $type = filter_input(INPUT_POST, "type");
 $page = filter_input(INPUT_POST, "page");
-$offset = ($page - 1) * MAX_TABLE_ROW_COUNT;
-
 $result = [];
+
 try {
   $pdo = new PDO(
     "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST . ";charset=utf8mb4",
@@ -27,7 +26,24 @@ try {
     ]
   );
 
+  // 最大ページ数取得
+  if ($type === SELECT_TYPE_ALL) {
+    $stmt = $pdo->prepare("select count(*) from words");
+  } else {
+    $stmt = $pdo->prepare("select count(*) from words where type = :type");
+    $stmt->bindValue(":type", $type);
+  }
+  $stmt->execute();
+  $rowCount = $stmt->fetchColumn();
+  $maxPage = (int)$rowCount === 0 ? 1 : ceil($rowCount / MAX_TABLE_ROW_COUNT);
+
   // 対象データ取得
+  if ($page > $maxPage) {
+    $page = $maxPage;
+  } elseif ($page <= 0) {
+    $page = 1;
+  }
+  $offset = ($page - 1) * MAX_TABLE_ROW_COUNT;
   if ($type === SELECT_TYPE_ALL) {
     // 表示対象が全データの場合
     $stmt = $pdo->prepare("select id, type, question, answer from words order by id limit :offset, :limitCount");
@@ -39,17 +55,6 @@ try {
   $stmt->bindValue(":limitCount", (int)MAX_TABLE_ROW_COUNT, pdo::PARAM_INT);
   $stmt->execute();
   $rows = $stmt->fetchAll();
-
-  // ページ数取得
-  if ($type === SELECT_TYPE_ALL) {
-    $stmt = $pdo->prepare("select count(*) from words");
-  } else {
-    $stmt = $pdo->prepare("select count(*) from words where type = :type");
-    $stmt->bindValue(":type", $type);
-  }
-  $stmt->execute();
-  $rowCount = $stmt->fetchColumn();
-  $maxPage = (int)$rowCount === 0 ? 1 : ceil($rowCount / MAX_TABLE_ROW_COUNT);
 } catch (PDOException $e) {
   $result["error"] = $e->getMessage();
   echo json_encode($result);
