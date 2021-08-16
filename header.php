@@ -48,7 +48,7 @@
     </header>
     <nav id="sp-nav">
         <ul>
-            <li><a href="./">トップ画面</a></li>
+            <li><a href="./">トップ</a></li>
             <?php if (isset($_SESSION["user"])) : ?>
                 <li><a href="edit.php">問題編集</a></li>
             <?php endif ?>

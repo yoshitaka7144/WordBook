@@ -248,9 +248,9 @@ if ($finished) {
               <div class="btn-wrapper">
                 <input class="btn btn-green btn-normal" type="button" id="btn-answer" value="解答する">
                 <?php if ($count === $_SESSION["quizCount"]) : ?>
-                  <input class="btn btn-blue btn-normal" id="btn-quiz-next" type="submit" value="結果画面へ" disabled>
+                  <input class="btn btn-blue btn-normal" id="btn-quiz-next" type="submit" value="結果画面へ">
                 <?php else : ?>
-                  <input class="btn btn-blue btn-normal" id="btn-quiz-next" type="submit" value="次へ" disabled>
+                  <input class="btn btn-blue btn-normal" id="btn-quiz-next" type="submit" value="次へ">
                 <?php endif ?>
               </div>
             </form>

@@ -56,8 +56,8 @@ $(function () {
       }
 
       // ボタン表示設定
-      $("#btn-answer").prop('disabled', true);
-      $("#btn-quiz-next").prop('disabled', false);
+      $(this).remove();
+      $("#btn-quiz-next").css("display", "block");
       $("#btn-quiz-next").addClass("poyopoyo");
     }
   });

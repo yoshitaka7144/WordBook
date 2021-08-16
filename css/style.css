@@ -865,6 +865,10 @@ footer i {
   background-color: #ffbebe;
 }
 
+#btn-quiz-next {
+  display: none;
+}
+
 .result {
   display: -webkit-box;
   display: -ms-flexbox;
