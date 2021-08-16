@@ -1,6 +1,6 @@
 # WordBook
 
-![quiz](https://user-images.githubusercontent.com/18690548/129211444-b9dbd4a5-f0d7-4338-b6a3-759ca56a7d49.gif)
+![demo](https://user-images.githubusercontent.com/18690548/129553838-c0e8edc1-4e0d-4012-b5d9-882840448460.gif)
 
 # 概要
 日本語と英語の単語帳アプリケーションです。  
@@ -37,6 +37,23 @@ https://mikanbako.sakura.ne.jp/Wordbook/
   * クイズ解答
   * 結果表示
 
+# テーブル定義書
+ユーザーテーブル（users）と単語テーブル（words）のテーブル定義書です。  
+<a href="https://docs.google.com/spreadsheets/d/1kAnCUVVjwLSICFZMSjreRandVdp8pJWhO918HXTGdZw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">テーブル定義書（Googleスプレッドシート）</a>
+
+# テスト
+大雑把ですがテストを行いました。  
+<a href="https://docs.google.com/spreadsheets/d/1NxQPDQ28mIoBi_U8K8_BsIVLgF6n-kF7VXJyqp0OEfI/edit?usp=sharing" target="_blank" rel="noopener noreferrer">機能単体テスト（Googleスプレッドシート）</a>  
+
+テスト環境  
+PC
+* OS：Windows10
+* ブラウザ：Chrome 91.0.4472.164
+
+スマートフォン
+* OS：Android 11
+* ブラウザ：Chrome 92.0.4515.131
+
 # 使用方法
 ## トップ画面
 クイズ画面へ遷移できます。非ログイン時はログイン画面へ遷移できます。ログイン時はユーザー情報の表示、編集画面へ遷移できます。  
@@ -64,18 +81,12 @@ https://mikanbako.sakura.ne.jp/Wordbook/
 ## クイズ画面
 ### 設定画面
 出題される問題種類、問題数、音声の有無を設定できます。スタートボタンを押すとクイズが始まります。  
-![setting](https://user-images.githubusercontent.com/18690548/129210931-24172118-7a36-4a08-b300-a4682203c455.PNG)
+![setting](https://user-images.githubusercontent.com/18690548/129547344-5cc2fb3a-d276-4723-868c-682c24f3afbf.PNG)
 
 ### クイズ
-設定されたクイズが出題されます。選択肢を1つ選んで解答していきます。最後に結果画面が表示されます。  
-![quiz](https://user-images.githubusercontent.com/18690548/129211444-b9dbd4a5-f0d7-4338-b6a3-759ca56a7d49.gif)
-
-# テーブル定義書
-[テーブル定義書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1kAnCUVVjwLSICFZMSjreRandVdp8pJWhO918HXTGdZw/edit?usp=sharing)
-
-# テスト
-[機能単体テスト（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1NxQPDQ28mIoBi_U8K8_BsIVLgF6n-kF7VXJyqp0OEfI/edit?usp=sharing)
+設定画面にて設定されたクイズが出題されます。4つの選択肢から1つ選択し解答していき、最後に結果画面が表示されます。クイズは登録データからランダムに選出され、選択肢は正解1つと他の問題データの答え3つから作成されます。  
+![quiz](https://user-images.githubusercontent.com/18690548/129552103-8e3de953-5b29-4e9b-a00d-e43dbce70ceb.gif)
 
 # リンク
-* [Github](https://github.com/yoshitaka7144)
-* [ポートフォリオ](https://mikanbako.sakura.ne.jp/portfolio/)
+* <a href="https://github.com/yoshitaka7144" target="_blank" rel="noopener noreferrer">Githubアカウント</a>
+* <a href="https://mikanbako.sakura.ne.jp/portfolio/" target="_blank" rel="noopener noreferrer">ポートフォリオ</a>

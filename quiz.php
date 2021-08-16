@@ -58,7 +58,7 @@ if (!empty($settingType) && !isset($_SESSION["quizData"])) {
         // 正解は１つ、それ以外は不正解となるように
         shuffle($tmpRows);
         foreach ($tmpRows as $tmpRow) {
-          if ($row["answer"] !== $tmpRow["answer"] && $row["question"] !== $tmpRow["question"]) {
+          if ($row["answer"] !== $tmpRow["answer"] && $row["question"] !== $tmpRow["question"] && !in_array($tmpRow["answer"], $data["choices"], true)) {
             $data["choices"][] = $tmpRow["answer"];
             if (count($data["choices"]) === (CHOICES_COUNT - 1)) {
               $data["choices"][] = $row["answer"];
