@@ -43,11 +43,16 @@ if (!empty($settingType) && !isset($_SESSION["quizData"])) {
     if (count($rows) < $settingCount) {
       $dbErrorMessage = "指定された種類の問題数が不足しています。データを追加登録してください。";
     } else {
-      // 問題データ作成
-      foreach ($rows as $row) {
-        // 取得データのコピー作成
+      // 選択肢の不正解用のデータ準備
+      $stmt = $pdo->prepare("select id, type, question, answer from words where type = :type");
+      $stmt->bindValue(":type", $settingType);
+      $stmt->execute();
+      $tmpData = $stmt->fetchAll();
+      foreach ($tmpData as $row) {
         $tmpRows[] = array("question" => $row["question"], "answer" => $row["answer"]);
       }
+
+      // 問題データ作成
       foreach ($rows as $row) {
         $addedData = false;
         $data["question"] = $row["question"];
