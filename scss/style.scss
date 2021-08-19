@@ -833,7 +833,6 @@ footer {
 #notification-area {
   display: none;
   text-align: center;
-  padding: 10px;
 }
 
 #answer-message {
@@ -1164,6 +1163,7 @@ footer {
       .choice-label {
         font-size: 16px;
         width: 90%;
+        padding: 7px;
       }
     }
   }

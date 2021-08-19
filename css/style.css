@@ -1000,7 +1000,6 @@ footer i {
 #notification-area {
   display: none;
   text-align: center;
-  padding: 10px;
 }
 
 #answer-message {
@@ -1411,6 +1410,7 @@ footer i {
   #choices .choice-area .choice-label {
     font-size: 16px;
     width: 90%;
+    padding: 7px;
   }
   #text-question,
   #text-answer {

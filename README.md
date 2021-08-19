@@ -1,6 +1,6 @@
 # WordBook
 
-![demo](https://user-images.githubusercontent.com/18690548/129553838-c0e8edc1-4e0d-4012-b5d9-882840448460.gif)
+![demo](https://user-images.githubusercontent.com/18690548/130126763-076f85a0-26f0-429d-929e-cb6bc098a974.gif)
 
 # 概要
 日本語と英語の単語帳アプリケーションです。  
@@ -90,7 +90,7 @@ PC
 
 ### クイズ
 設定画面にて設定されたクイズが出題されます。4つの選択肢から1つ選択し解答していき、最後に結果画面が表示されます。クイズは登録データからランダムに選出され、選択肢は正解1つと他の問題データの答え3つから作成されます。  
-![quiz](https://user-images.githubusercontent.com/18690548/129552103-8e3de953-5b29-4e9b-a00d-e43dbce70ceb.gif)
+![quiz](https://user-images.githubusercontent.com/18690548/130127577-a40041b3-0f3c-47de-a573-19886abe42c7.gif)
 
 # リンク
 * <a href="https://github.com/yoshitaka7144" target="_blank" rel="noopener noreferrer">Githubアカウント</a>
