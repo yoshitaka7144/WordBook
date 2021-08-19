@@ -45,6 +45,10 @@ $(function () {
         if (audio != null) audio.play();
       }
 
+      // 問題カードをひっくり返すアニメーション
+      $("#card-answer").addClass("animation");
+      $("#card-question").addClass("animation");
+
       // 選択肢に背景色設定
       for (var i = 1; i <= choicesCount; i++) {
         if ($("#choice-" + i).val() === answer) {

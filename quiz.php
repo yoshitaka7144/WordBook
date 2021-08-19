@@ -229,10 +229,15 @@ if ($finished) {
             </div>
           <?php else : ?>
             <p class="title"><?= "第 " . $count . " 問目" ?></p>
-            <fieldset class="quiz-fieldset">
-              <legend>問題</legend>
-              <p id="text-question" class="fadein"><?= h($question) ?></p>
-              <p id="text-answer"><?= h($answer) ?></p>
+            <fieldset class="quiz-fieldset border-none">
+              <div id="wordbook">
+                <div class="card" id="card-answer">
+                  <p id="text-answer"><?= h($answer) ?></p>
+                </div>
+                <div class="card" id="card-question">
+                  <p id="text-question" class="fadein"><?= h($question) ?></p>
+                </div>
+              </div>
             </fieldset>
             <fieldset class="quiz-fieldset">
               <legend>選択肢</legend>
