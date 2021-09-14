@@ -8,7 +8,7 @@
 スマートフォンからも実行可能です。 
 
 # URL
-https://mikanbako.sakura.ne.jp/Wordbook/
+https://wordbook.mikanbako.jp
 
 # 使用言語
 * PHP
@@ -94,4 +94,4 @@ PC
 
 # リンク
 * <a href="https://github.com/yoshitaka7144" target="_blank" rel="noopener noreferrer">Githubアカウント</a>
-* <a href="https://mikanbako.sakura.ne.jp/portfolio/" target="_blank" rel="noopener noreferrer">ポートフォリオ</a>
+* <a href="https://portfolio.mikanbako.jp" target="_blank" rel="noopener noreferrer">ポートフォリオ</a>
